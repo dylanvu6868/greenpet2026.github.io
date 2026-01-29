@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách đăng ký - Admin GreenPet</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/admin-theme.css">
+</head>
+
+<body>
+    <!-- Admin Header will be rendered by admin-header.js -->
+    <div id="admin-header-placeholder"></div>
+
+    <main class="admin-page">
+        <div class="container">
+            <div class="page-header mb-xl flex justify-between items-center">
+                <h1 class="page-title">Danh sách đăng ký nhận tin</h1>
+                <a href="settings.html" class="btn btn-secondary">Quay lại Cài đặt</a>
+            </div>
+
+            <div class="card">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Ngày đăng ký</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subscribersTableBody">
+                            <!-- Rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/data/storage.js"></script>
+    <script src="../js/services/admin-service.js"></script>
+    <script src="../js/ui/dom-helpers.js"></script>
+    <script src="../js/ui/admin-header.js"></script>
+    <script>
+        (function () {
+            // Auth handled by AdminHeader
+
+            // Header handled by admin-header.js
+
+            DOM.ready(() => {
+                const tbody = DOM.byId('subscribersTableBody');
+                // Assume subscribers are stored in a simple array for now
+                // In a real app we would have a specific service
+                const subscribers = Storage.get('greenpet_subscribers', []);
+
+                if (subscribers.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="2" class="text-center py-lg text-gray">Chưa có người đăng ký nào</td></tr>';
+                    return;
+                }
+
+                subscribers.forEach(sub => {
+                    const tr = document.createElement('tr');
+                    const date = sub.createdAt ? new Date(sub.createdAt).toLocaleDateString('vi-VN') : 'N/A';
+                    tr.innerHTML = `
+                        <td>${sub.email}</td>
+                        <td>${date}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+
+            });
+        })();
+    </script>
+</body>
+
+</html>

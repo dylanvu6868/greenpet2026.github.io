@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về Chúng Tôi - GreenPet</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title" style="color: var(--color-primary);">
+                        Về GreenPet
+                    </h1>
+                    <p class="hero-subtitle">
+                        Yêu thương thú cưng, bảo vệ hành tinh - Hành trình của chúng tôi hướng tới một tương lai bền
+                        vững
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div
+                        style="display: inline-block; padding: 0.5rem 1.5rem; background: rgba(45, 122, 62, 0.15); border-radius: 50px; margin-bottom: 1rem;">
+                        <span
+                            style="color: var(--color-primary); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">
+                            CÂU CHUYỆN CỦA CHÚNG TÔI</span>
+                    </div>
+                    <h2 class="section-title" style="color: var(--color-primary);">
+                        Hành Trình Từ Tầm Nhìn Đến Hiện Thực
+                    </h2>
+                    <p class="section-subtitle">
+                        Khám phá câu chuyện đằng sau GreenPet và niềm đam mê của chúng tôi về một tương lai bền vững
+                    </p>
+                </div>
+
+                <div style="max-width: 900px; margin: 0 auto;">
+                    <!-- Our Story Narrative -->
+                    <div class="card mb-xl">
+                        <div class="card-body">
+                            <h3 class="text-2xl font-semibold mb-md" style="color: var(--color-primary);"></h3>
+                            <div style="line-height: 1.9; font-size: var(--text-base);">
+                                <p style="margin-bottom: 1.5rem;">
+                                    Hành trình của GreenPet bắt đầu từ một trăn trở sâu sắc: giữa tình yêu vô điều kiện
+                                    dành cho thú cưng và mong muốn sống trách nhiệm với môi trường, liệu có tồn tại một
+                                    điểm giao thoa? Chúng tôi nhận thấy hai bài toán khó song hành: những bộ quần áo cũ
+                                    đầy kỷ niệm nhưng đang dần trở thành gánh nặng cho không gian sống, và sự thiếu vắng
+                                    các lựa chọn bền vững giữa vô vàn đồ chơi thú cưng làm từ nhựa và polyester. Sự mâu
+                                    thuẫn này chính là động lực để chúng tôi tìm kiếm một lối đi khác biệt.
+                                </p>
+                                <p>
+                                    GreenPet ra đời như lời giải cho bài toán ấy, khép lại khoảng cách giữa sự lãng phí
+                                    của ngành thời trang và nhu cầu chăm sóc thú cưng an toàn. Chúng tôi kiến tạo một
+                                    vòng tròn kinh tế tuần hoàn, nơi những món đồ cũ không bị vứt bỏ mà được tái sinh
+                                    thành những vật phẩm độc bản, đong đầy yêu thương. Bằng cách chuyển hóa rác thải dệt
+                                    may thành niềm vui cho "những đứa con bốn chân", GreenPet không chỉ giúp giảm thiểu
+                                    gánh nặng lên môi trường và tiết kiệm tài nguyên, mà còn mang đến cho cộng đồng
+                                    những giá trị bền vững – từ việc tạo sinh kế cho thợ thủ công đến việc lan tỏa lối
+                                    sống xanh đầy cảm hứng.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="section"
+            style="background: linear-gradient(135deg, #f0f9f4 0%, #e8f5ec 100%); position: relative; overflow: hidden;">
+            <!-- Decorative elements -->
+            <div
+                style="position: absolute; top: 20px; right: 50px; font-size: 4rem; opacity: 0.05; transform: rotate(-15deg);">
+                🎯</div>
+            <div
+                style="position: absolute; bottom: 30px; left: 40px; font-size: 5rem; opacity: 0.05; transform: rotate(25deg);">
+                🌟</div>
+
+            <div class="container" style="position: relative; z-index: 1;">
+                <div class="section-header">
+                    <div
+                        style="display: inline-block; padding: 0.5rem 1.5rem; background: rgba(45, 122, 62, 0.15); border-radius: 50px; margin-bottom: 1rem;">
+                        <span
+                            style="color: var(--color-primary); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">
+                            SỨ MỆNH, TẦM NHÌN & GIÁ TRỊ CỐT LÕI</span>
+                    </div>
+                    <h2 class="section-title" style="color: var(--color-primary);">
+                        Những Điều Chúng Tôi Tin Tưởng
+                    </h2>
+                    <p class="section-subtitle">
+                        Sứ mệnh, tầm nhìn và các giá trị cốt lõi định hướng mọi quyết định và hành động của chúng tôi
+                    </p>
+                </div>
+
+                <!-- Mission & Vision -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-xl mb-3xl">
+                    <div class="product-card-premium text-center" style="cursor: default;">
+                        <div class="product-card-body-premium">
+                            <div
+                                style="width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--color-primary); transition: transform 0.3s ease;">
+                                <img src="./assets/images/icons/target.svg" alt="Sứ Mệnh"
+                                    style="width: 100%; height: 100%;">
+                            </div>
+                            <h2 class="text-2xl font-semibold mb-md" style="color: var(--color-primary);">Sứ Mệnh</h2>
+                            <p style="line-height: 1.8; color: var(--text-secondary);">
+                                Tạo ra các sản phẩm thú cưng độc đáo, chất lượng cao từ vật liệu tái chế của chủ sở hữu,
+                                đồng thời thúc đẩy nền kinh tế tuần hoàn và nâng cao nhận thức cộng đồng về giảm rác
+                                thải dệt may.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="product-card-premium text-center" style="cursor: default;">
+                        <div class="product-card-body-premium">
+                            <div
+                                style="width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--color-primary); transition: transform 0.3s ease;">
+                                <img src="./assets/images/icons/star.svg" alt="Tầm Nhìn"
+                                    style="width: 100%; height: 100%;">
+                            </div>
+                            <h2 class="text-2xl font-semibold mb-md" style="color: var(--color-primary);">Tầm Nhìn</h2>
+                            <p style="line-height: 1.8; color: var(--text-secondary);">
+                                Trở thành thương hiệu tiên phong tại Việt Nam trong lĩnh vực thời trang và phụ kiện thú
+                                cưng bền vững,
+                                nơi mỗi món đồ cũ được biến thành biểu tượng của tình yêu và nhận thức về môi trường.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="section"
+            style="background: linear-gradient(135deg, #f0f9f4 0%, #e8f5ec 100%); position: relative; overflow: hidden;">
+            <!-- Decorative elements -->
+            <div
+                style="position: absolute; top: 20px; left: 50px; font-size: 4rem; opacity: 0.05; transform: rotate(15deg);">
+                👥</div>
+            <div
+                style="position: absolute; bottom: 30px; right: 40px; font-size: 5rem; opacity: 0.05; transform: rotate(-25deg);">
+                💚</div>
+
+            <div class="container" style="position: relative; z-index: 1;">
+                <div class="section-header">
+                    <div
+                        style="display: inline-block; padding: 0.5rem 1.5rem; background: rgba(45, 122, 62, 0.15); border-radius: 50px; margin-bottom: 1rem;">
+                        <span
+                            style="color: var(--color-primary); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">
+                            ĐỘI NGŨ</span>
+                    </div>
+                    <h2 class="section-title" style="color: var(--color-primary);">
+                        Gặp Gỡ Đội Ngũ Của Chúng Tôi
+                    </h2>
+                    <p
+                        style="max-width: 800px; margin: 1.5rem auto 0; text-align: center; color: var(--text-secondary); line-height: 1.8;">
+                        Với triết lý <strong style="color: var(--color-primary);">"Renew, Reimagine, Relove"</strong>,
+                        GreenPet tin rằng mỗi sản phẩm
+                        chúng tôi tạo ra đều kể một câu chuyện - biến đổi rác thải dệt may thành giá trị hữu hình cho
+                        môi trường,
+                        chủ nuôi và cộng đồng của chúng ta.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
+                    <!-- Team Member 1 -->
+                    <div class="product-card-premium text-center" style="cursor: default;">
+                        <div class="product-card-body-premium">
+                            <div
+                                style="width: 150px; height: 150px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(45, 122, 62, 0.3);">
+                                <img src="./assets/images/team/vu-hai-duong.png" alt="Vũ Hải Dương"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-sm">Vũ Hải Dương</h3>
+                            <p class="text-sm mb-md" style="color: var(--color-primary); font-weight: 600;">CEO - Chief
+                                Executive Officer</p>
+                            <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+                                Hoạch định chiến lược, điều hành tổng thể và dẫn dắt GreenPet hiện thực hóa tầm nhìn bền
+                                vững.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="product-card-premium text-center" style="cursor: default;">
+                        <div class="product-card-body-premium">
+                            <div
+                                style="width: 150px; height: 150px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);">
+                                <img src="./assets/images/team/vu-ky-anh.jpg" alt="Vũ Kỳ Anh"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-sm">Vũ Kỳ Anh</h3>
+                            <p class="text-sm mb-md" style="color: var(--color-primary); font-weight: 600;">CMO - Chief
+                                Marketing Officer</p>
+                            <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+                                Xây dựng chiến lược khách hàng, phát triển kênh phân phối và nuôi dưỡng mối quan hệ bền
+                                vững.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="product-card-premium text-center" style="cursor: default;">
+                        <div class="product-card-body-premium">
+                            <div
+                                style="width: 150px; height: 150px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);">
+                                <img src="./assets/images/team/phung-khac-vinh-hung.png" alt="Phùng Khắc Vĩnh Hưng"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-sm">Phùng Khắc Vĩnh Hưng</h3>
+                            <p class="text-sm mb-md" style="color: var(--color-primary); font-weight: 600;">CPO - Chief
+                                Product Officer</p>
+                            <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+                                Nghiên cứu thị trường và nhu cầu khách hàng để định hình chiến lược sản phẩm tối ưu.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="product-card-premium text-center" style="cursor: default;">
+                        <div class="product-card-body-premium">
+                            <div
+                                style="width: 150px; height: 150px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);">
+                                <img src="./assets/images/team/pham-thuy-linh.png" alt="Phạm Thùy Linh"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-sm">Phạm Thùy Linh</h3>
+                            <p class="text-sm mb-md" style="color: var(--color-primary); font-weight: 600;">CBO - Chief
+                                Brand Officer</p>
+                            <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+                                Kiến tạo bản sắc thương hiệu và lan tỏa thông điệp giá trị sống xanh đến cộng đồng.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 5 -->
+                    <div class="product-card-premium text-center" style="cursor: default;">
+                        <div class="product-card-body-premium">
+                            <div
+                                style="width: 150px; height: 150px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);">
+                                <img src="./assets/images/team/nguyen-tu-lam.jpg" alt="Nguyễn Tú Lam"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-sm">Nguyễn Tú Lam</h3>
+                            <p class="text-sm mb-md" style="color: var(--color-primary); font-weight: 600;">COO - Chief
+                                Operating Officer</p>
+                            <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+                                Quản lý vận hành toàn diện, phát triển đối tác chiến lược và đảm bảo chuỗi cung ứng bền
+                                vững.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 6 -->
+                    <div class="product-card-premium text-center" style="cursor: default;">
+                        <div class="product-card-body-premium">
+                            <div
+                                style="width: 150px; height: 150px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);">
+                                <img src="./assets/images/team/luong-thi-phuong-mai.jpg" alt="Lương Thị Phương Mai"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3 class="text-xl font-semibold mb-sm">Lương Thị Phương Mai</h3>
+                            <p class="text-sm mb-md" style="color: var(--color-primary); font-weight: 600;">CFO - Chief
+                                Financial Officer</p>
+                            <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+                                Quản trị sức khỏe tài chính, tối ưu hóa chi phí và đảm bảo hiệu quả đầu tư cho dự án.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Commitment Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div
+                        style="display: inline-block; padding: 0.5rem 1.5rem; background: rgba(45, 122, 62, 0.15); border-radius: 50px; margin-bottom: 1rem;">
+                        <span
+                            style="color: var(--color-primary); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">
+                            CAM KẾT</span>
+                    </div>
+                    <h2 class="section-title" style="color: var(--color-primary);">
+                        Cam Kết Của Chúng Tôi
+                    </h2>
+                    <p class="section-subtitle">
+                        Những cam kết không thay đổi của GreenPet đối với khách hàng và hành tinh
+                    </p>
+                </div>
+
+                <div style="max-width: 900px; margin: 0 auto;">
+                    <div class="card">
+                        <div class="card-body">
+                            <div style="line-height: 1.9;">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <h3 class="text-xl font-semibold mb-sm">Bảo Vệ Môi Trường</h3>
+                                    <p style="color: var(--text-secondary);">
+                                        Chúng tôi cam kết giảm thiểu tác động môi trường ở mọi khía cạnh - từ nguyên
+                                        liệu,
+                                        sản xuất, đến đóng gói và vận chuyển. Mỗi quyết định đều được đánh giá dựa trên
+                                        tác động môi trường của nó.
+                                    </p>
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <h3 class="text-xl font-semibold mb-sm">Minh Bạch Hoàn Toàn</h3>
+                                    <p style="color: var(--text-secondary);">
+                                        Chúng tôi công khai mọi thứ - từ nguồn gốc nguyên liệu, quy trình sản xuất,
+                                        đến tác động carbon của mỗi sản phẩm. Mỗi sản phẩm đều có mã QR để bạn có thể
+                                        truy xuất toàn bộ hành trình của nó.
+                                    </p>
+                                    </p>
+                                </div>
+                                <div style="margin-bottom: 1.5rem;">
+                                    <h3 class="text-xl font-semibold mb-sm">Chất Lượng Vượt Trội</h3>
+                                    <p style="color: var(--text-secondary);">
+                                        Bền vững không có nghĩa là hy sinh chất lượng. Chúng tôi đảm bảo mỗi sản phẩm
+                                        đều bền, đẹp và an toàn cho thú cưng của bạn. Tất cả sản phẩm đều có bảo hành
+                                        và chính sách đổi trả linh hoạt.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-sm">Hỗ Trợ Cộng Đồng</h3>
+                                    <p style="color: var(--text-secondary);">
+                                        Chúng tôi hợp tác với các tổ chức địa phương để thu gom rác thải, tạo việc làm,
+                                        và hỗ trợ các chương trình giáo dục về môi trường. 5% lợi nhuận được dành cho
+                                        các dự án bảo vệ môi trường.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script>
+        DOM.ready(() => {
+            const count = CartService.getItemCount();
+            UIComponents.updateHeaderCartCount(count);
+
+            const toggle = DOM.byId('mobileMenuToggle');
+            const nav = DOM.byId('siteNav');
+            if (toggle && nav) {
+                DOM.on(toggle, 'click', () => DOM.toggleClass(nav, 'active'));
+            }
+
+            // Add hover effects for value cards
+            const valueCards = document.querySelectorAll('.product-card-premium');
+            valueCards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    const iconContainer = this.querySelector('div[style*="width: 64px"]');
+                    if (iconContainer) {
+                        iconContainer.style.transform = 'scale(1.2) rotate(5deg)';
+                    }
+                });
+                card.addEventListener('mouseleave', function () {
+                    const iconContainer = this.querySelector('div[style*="width: 64px"]');
+                    if (iconContainer) {
+                        iconContainer.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <style>
+        /* Additional hover effects for about page */
+        .product-card-premium:hover {
+            transform: translateY(-4px);
+        }
+
+        .product-card-premium:hover .product-card-body-premium {
+            transform: translateY(0);
+        }
+
+        /* Icon styling */
+        .product-card-premium div[style*="width: 64px"] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card-premium div[style*="width: 64px"] img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .product-card-premium:hover div[style*="width: 64px"] img {
+            filter: drop-shadow(0 4px 8px rgba(45, 122, 62, 0.3));
+        }
+    </style>
+</body>
+
+</html>

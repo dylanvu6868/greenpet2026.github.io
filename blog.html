@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tin tức, bài viết kiến thức chăm sóc thú cưng từ GreenPet">
+    <title>Tin tức - GreenPet</title>
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="blog.html" class="nav-link active">Tin tức</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-2xl">
+        <div class="container">
+            <h1 class="page-title mb-lg">Tin tức & Sự kiện</h1>
+            <p class="text-gray mb-2xl">Cập nhật những thông tin mới nhất về GreenPet và kiến thức chăm sóc thú cưng.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl" id="blogGrid">
+                <!-- Posts rendering here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="blog.html">Tin tức</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/data/initial-data.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/blog-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script>
+        // Simple inline script for public blog view
+        (function () {
+            DOM.ready(async () => {
+                await InitialData.initialize();
+
+                const posts = BlogService.getPosts().filter(p => p.isActive);
+                const container = DOM.byId('blogGrid');
+                const cartCount = CartService.getItemCount();
+                UIComponents.updateHeaderCartCount(cartCount);
+
+                if (posts.length === 0) {
+                    container.innerHTML = '<p class="text-gray col-span-3 text-center">Chưa có bài viết nào.</p>';
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const article = DOM.create('article', { className: 'card shadow-sm hover:shadow-md transition-all h-full flex flex-col' });
+                    const imgUrl = post.image || './assets/images/hero-bg.jpg'; // Flashback placeholder
+
+                    article.innerHTML = `
+                        <div class="relative h-48 overflow-hidden rounded-t-lg">
+                            <img src="${imgUrl}" class="w-full h-full object-cover transition-transform hover:scale-105" alt="${post.title}">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                                <span class="text-xs text-white font-medium bg-primary px-2 py-1 rounded">Tin tức</span>
+                            </div>
+                        </div>
+                        <div class="p-lg flex-1 flex flex-col">
+                            <h2 class="text-lg font-bold mb-md text-gray-900 line-clamp-2">${post.title}</h2>
+                            <p class="text-gray-600 mb-lg line-clamp-3 text-sm flex-1">${post.shortDescription}</p>
+                            <div class="flex justify-between items-center mt-auto border-t border-gray-100 pt-md">
+                                <span class="text-xs text-gray-500">${new Date(post.createdAt).toLocaleDateString('vi-VN')}</span>
+                                <span class="text-sm text-primary font-medium cursor-pointer">Đọc thêm →</span>
+                            </div>
+                        </div>
+                    `;
+
+                    // Logic to view detail could be added here (e.g. blog-detail.html)
+                    // For now keeping it simple as a list view
+
+                    DOM.append(container, article);
+                });
+
+                // Mobile menu
+                const toggle = DOM.byId('mobileMenuToggle');
+                const nav = DOM.byId('siteNav');
+                if (toggle && nav) {
+                    DOM.on(toggle, 'click', () => DOM.toggleClass(nav, 'active'));
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>

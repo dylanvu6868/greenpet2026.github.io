@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chi tiết sản phẩm - GreenPet">
+    <title>Sản Phẩm - GreenPet</title>
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-2xl">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="mb-lg">
+                <a href="index.html" class="text-sm" style="color: var(--text-secondary);">Trang chủ</a>
+                <span class="text-sm" style="color: var(--text-secondary);"> / </span>
+                <a href="products.html" class="text-sm" style="color: var(--text-secondary);">Sản phẩm</a>
+                <span class="text-sm" style="color: var(--text-secondary);"> / </span>
+                <span class="text-sm" id="breadcrumbProduct">...</span>
+            </div>
+
+            <!-- Loading -->
+            <div id="productLoader" class="flex justify-center py-3xl">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Product Detail -->
+            <div id="productDetail" style="display: none;">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-2xl mb-3xl">
+                    <!-- Images -->
+                    <div class="lg:col-span-4">
+                        <div class="card">
+                            <img id="productImage" src="" alt=""
+                                style="width: 100%; aspect-ratio: 1; object-fit: cover;">
+                        </div>
+                    </div>
+
+                    <!-- Info -->
+                    <div class="lg:col-span-8">
+                        <div class="mb-xs">
+                            <span id="productCategory" class="badge badge-secondary"></span>
+                        </div>
+
+                        <h1 id="productName" class="text-3xl font-bold mb-xs"></h1>
+
+                        <div id="productBadge" class="mb-sm"></div>
+
+                        <div class="mb-md">
+                            <div class="flex items-center gap-md mb-xs">
+                                <span id="productPrice" class="text-2xl font-bold"
+                                    style="color: var(--color-primary);"></span>
+                                <span id="productComparePrice" class="text-xl"
+                                    style="color: var(--text-secondary); text-decoration: line-through;"></span>
+                            </div>
+                        </div>
+
+                        <div id="productDescription" class="mb-md" style="line-height: 1.6;"></div>
+                        <div class="mb-md">
+                            <div class="flex gap-md mb-sm">
+                                <div class="eco-badge">🌿 <span id="recycledPercent"></span>% tái chế</div>
+                                <div class="badge badge-secondary" id="productMaterial"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-md mb-md">
+                            <!-- Size Selection -->
+                            <div>
+                                <label class="form-label" style="margin-bottom: 4px;">Chọn size:</label>
+                                <div id="sizeOptions" class="flex gap-sm" style="flex-wrap: wrap;"></div>
+                            </div>
+
+                            <!-- Quantity -->
+                            <div>
+                                <label class="form-label" style="margin-bottom: 4px;">Số lượng:</label>
+                                <div class="flex items-center gap-sm">
+                                    <div class="quantity-selector" style="display: inline-flex;">
+                                        <button class="quantity-btn" id="decreaseQty">-</button>
+                                        <span class="quantity-value" id="quantityValue">1</span>
+                                        <button class="quantity-btn" id="increaseQty">+</button>
+                                    </div>
+                                    <span class="text-sm" style="color: var(--text-secondary); white-space: nowrap;">
+                                        / <span id="stockAmount"></span> có sẵn
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add to Cart -->
+                        <button class="btn btn-primary w-full mb-sm" id="addToCartBtn">
+                            Thêm vào giỏ hàng
+                        </button>
+
+                        <button class="btn btn-secondary w-full" id="buyNowBtn">
+                            Mua ngay
+                        </button>
+                    </div>
+                </div>
+                <!-- Long Description -->
+                <div class="mb-3xl">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="text-2xl font-semibold mb-md">Mô tả chi tiết</h2>
+                            <div id="productLongDescription" style="line-height: 1.8;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Products -->
+                <div id="relatedSection" style="display: none;">
+                    <h2 class="text-2xl font-semibold mb-lg">Sản phẩm liên quan</h2>
+                    <div id="relatedProducts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg"></div>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="productError" style="display: none;"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/data/database.js"></script>
+    <script src="./js/data/validators.js"></script>
+    <script src="./js/data/initial-data.js"></script>
+    <script src="./js/services/product-service.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/wishlist-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script src="./js/pages/product-detail.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+/* Authentication Links */
+.header-auth {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.auth-link {
+    display: flex;
+    /* Make it flex to align img center */
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+    /* Match header-cart padding */
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    /* Transition all for bg change */
+    font-size: 0.95rem;
+    border-radius: 0.25rem;
+    /* Match header-cart radius */
+}
+
+.auth-link:hover {
+    color: var(--color-primary);
+    background-color: rgba(45, 122, 62, 0.1);
+    /* Match header-cart hover bg */
+}
+
+.auth-link img {
+    transition: filter 0.2s;
+}
+
+.auth-link:hover img {
+    filter: invert(38%) sepia(35%) saturate(996%) hue-rotate(94deg) brightness(94%) contrast(90%);
+}
+
+.auth-separator {
+    color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+    .header-auth {
+        display: none;
+        /* Hide on mobile for now or move to menu */
+    }
+}

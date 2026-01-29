@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": "dog-clothes",
+      "name": "Quần áo chó",
+      "slug": "cho",
+      "description": "Quần áo thời trang cho chó các loại, từ vật liệu tái chế thân thiện môi trường",
+      "icon": "🐕",
+      "order": 1
+    },
+    {
+      "id": "cat-clothes",
+      "name": "Quần áo mèo",
+      "slug": "meo",
+      "description": "Quần áo xinh xắn cho mèo cưng, được làm từ chất liệu tái chế an toàn",
+      "icon": "🐈",
+      "order": 2
+    },
+    {
+      "id": "accessories",
+      "name": "Phụ kiện",
+      "slug": "phu-kien",
+      "description": "Phụ kiện thú cưng bền vững",
+      "icon": "🎀",
+      "order": 3
+    }
+  ]
+}

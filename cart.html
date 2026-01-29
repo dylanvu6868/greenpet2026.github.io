@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Giỏ hàng - GreenPet">
+    <title>Giỏ Hàng - GreenPet</title>
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-2xl">
+        <div class="container">
+            <h1 class="page-title mb-2xl">Giỏ Hàng</h1>
+
+            <!-- Cart Content -->
+            <div id="cartContent">
+                <!-- Loading -->
+                <div id="cartLoader" class="flex justify-center py-3xl">
+                    <div class="spinner"></div>
+                </div>
+
+                <!-- Empty Cart -->
+                <div id="emptyCart" style="display: none;"></div>
+
+                <!-- Cart with Items -->
+                <div id="cartWithItems" style="display: none;">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+                        <!-- Cart Items -->
+                        <div class="lg:col-span-2">
+                            <div id="cartItems"></div>
+                        </div>
+
+                        <!-- Cart Summary -->
+                        <div>
+                            <div class="cart-summary">
+                                <h2 class="cart-summary-title">Tổng Đơn Hàng</h2>
+
+                                <div class="cart-summary-row">
+                                    <span>Tạm tính:</span>
+                                    <span id="subtotalAmount">0₫</span>
+                                </div>
+
+                                <div class="cart-summary-row">
+                                    <span>Phí vận chuyển:</span>
+                                    <span id="shippingAmount">30,000₫</span>
+                                </div>
+
+                                <div id="freeShippingMessage" class="text-sm"
+                                    style="color: var(--color-primary); margin: var(--spacing-md) 0; display: none;">
+                                    🎉 Bạn được miễn phí vận chuyển!
+                                </div>
+
+                                <div id="almostFreeShipping" class="text-sm"
+                                    style="color: var(--text-secondary); margin: var(--spacing-md) 0; display: none;">
+                                    Mua thêm <strong id="amountNeeded"></strong> để được miễn phí vận chuyển
+                                </div>
+
+                                <div class="cart-summary-row" id="discountRow"
+                                    style="display: none; color: var(--success);">
+                                    <span>Giảm giá:</span>
+                                    <span id="discountAmount">-0₫</span>
+                                </div>
+
+                                <div class="cart-summary-row total">
+                                    <span>Tổng cộng:</span>
+                                    <span id="totalAmount">30,000₫</span>
+                                </div>
+
+                                <div class="voucher-input-group mt-md mb-md">
+                                    <div class="flex gap-sm">
+                                        <input type="text" id="voucherCode" class="form-control"
+                                            placeholder="Mã giảm giá">
+                                        <button class="btn btn-secondary" id="applyVoucherBtn">Áp dụng</button>
+                                    </div>
+                                    <div id="voucherMessage" class="text-sm mt-xs"></div>
+                                </div>
+
+                                <button class="btn btn-primary w-full mt-lg" id="checkoutBtn">
+                                    Tiến hành thanh toán
+                                </button>
+
+                                <a href="products.html" class="btn btn-text w-full mt-md">
+                                    ← Tiếp tục mua sắm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 GreenPet.
+                Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/data/database.js"></script>
+    <script src="./js/data/validators.js"></script>
+    <script src="./js/data/initial-data.js"></script>
+    <script src="./js/services/product-service.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/wishlist-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script src="./js/pages/cart.js"></script>
+</body>
+
+</html>

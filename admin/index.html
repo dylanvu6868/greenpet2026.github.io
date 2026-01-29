@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - GreenPet</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/admin-theme.css">
+</head>
+
+<body>
+    <!-- Horizontal Header -->
+    <!-- Admin Header will be rendered by admin-header.js -->
+    <div id="admin-header-placeholder"></div>
+
+    <main class="admin-page">
+        <div class="container">
+            <div class="page-header mb-2xl">
+                <h1 class="page-title">Dashboard</h1>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid mb-2xl" id="statsGrid">
+                <!-- Will be loaded -->
+            </div>
+
+            <!-- Layout: Recent Orders + User Management -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+                <!-- Recent Orders -->
+                <div class="lg:col-span-2">
+                    <div class="card h-full">
+                        <div class="card-header">
+                            <span>Đơn Hàng Gần Đây</span>
+                            <a href="orders.html" class="btn btn-sm btn-text text-primary">Xem tất cả →</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div id="recentOrders" class="table-responsive">
+                                <div class="flex justify-center py-lg">
+                                    <div class="spinner"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions / User Management -->
+                <div class="lg:col-span-1">
+                    <div class="card mb-lg">
+                        <div class="card-header">Thao tác nhanh</div>
+                        <div class="card-body grid grid-cols-2 gap-md">
+                            <a href="product-form.html"
+                                class="btn btn-secondary flex flex-col items-center justify-center py-lg gap-xs text-center h-auto">
+                                <span style="font-size: 1.5rem;">➕</span>
+                                <span class="text-sm">Thêm SP</span>
+                            </a>
+                            <a href="vouchers.html"
+                                class="btn btn-secondary flex flex-col items-center justify-center py-lg gap-xs text-center h-auto">
+                                <span style="font-size: 1.5rem;">🎫</span>
+                                <span class="text-sm">Tạo Mã</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">Người dùng hệ thống</div>
+                        <div class="card-body" id="userManagementCard">
+                            <p class="text-secondary text-sm">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-xl">
+                <div class="card-header flex items-center justify-between">
+                    <span>Danh sách tài khoản</span>
+                    <div class="flex gap-sm">
+                        <input id="userSearchInput" class="form-control" placeholder="Tìm theo tên/email/sđt..."
+                            style="max-width: 320px; height: 36px;" />
+                        <button class="btn btn-sm btn-secondary" onclick="refreshUsers()">Làm mới</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="usersTableWrap">
+                        <div class="flex justify-center py-lg">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: var(--text-xs); margin-top: var(--spacing-sm);">
+                        Ghi chú: Vì chạy static trên GitHub Pages nên dữ liệu lưu trong LocalStorage của trình duyệt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/data/storage.js"></script>
+    <script src="../js/data/database.js"></script>
+    <script src="../js/data/initial-data.js"></script>
+    <script src="../js/services/product-service.js"></script>
+    <script src="../js/services/order-service.js"></script>
+    <script src="../js/services/admin-service.js"></script>
+    <script src="../js/services/user-service.js"></script>
+    <script src="../js/services/user-service.js"></script>
+    <script src="../js/ui/dom-helpers.js"></script>
+    <script src="../js/ui/admin-header.js"></script>
+    <script>
+        DOM.ready(async () => {
+            // Auth handled by AdminHeader
+
+            // Logout Handler is now managed by AdminHeader component
+
+
+            await InitialData.initialize();
+            await loadDashboard();
+            initUsersUI();
+        });
+
+        async function loadDashboard() {
+            const stats = await AdminService.getDashboardStats();
+
+            // Render stats
+            const statsGrid = DOM.byId('statsGrid');
+            if (statsGrid) {
+                DOM.html(statsGrid, `
+                  <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">👤</div>
+                        <span class="badge badge-success">+12%</span>
+                    </div>
+                    <div class="stat-label">Tổng người dùng</div>
+                    <div class="stat-value">${stats.users.total}</div>
+                    <div class="stat-trend trend-up">↗ ${stats.users.new} mới tuần này</div>
+                  </div>
+                  
+                  <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon">📦</div>
+                        <span class="badge badge-secondary">Stable</span>
+                    </div>
+                    <div class="stat-label">Sản phẩm kích hoạt</div>
+                    <div class="stat-value">${stats.products.total}</div>
+                    <div class="stat-trend text-gray">Kho hàng ổn định</div>
+                  </div>
+
+                  <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: #fff7ed; color: #ea580c;">🛒</div>
+                        <span class="badge badge-warning">${stats.orders.pending} chờ</span>
+                    </div>
+                    <div class="stat-label">Đơn hàng mới</div>
+                    <div class="stat-value">${stats.orders.pending}</div>
+                    <div class="stat-trend text-gray">Cần xử lý ngay</div>
+                  </div>
+
+                  <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: #eff6ff; color: #2563eb;">💰</div>
+                        <span class="badge badge-success">+8%</span>
+                    </div>
+                    <div class="stat-label">Doanh thu</div>
+                    <div class="stat-value">${ProductService.formatPrice(stats.orders.completedRevenue)}</div>
+                    <div class="stat-trend trend-up">↗ Tăng trưởng tốt</div>
+                  </div>
+                `);
+            }
+
+            // Render recent orders
+            const ordersContainer = DOM.byId('recentOrders');
+            if (ordersContainer && stats.recentOrders) {
+                if (stats.recentOrders.length === 0) {
+                    DOM.html(ordersContainer, '<p class="text-center" style="color: var(--text-secondary);">Chưa có đơn hàng</p>');
+                } else {
+                    const table = `
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Mã đơn</th>
+                  <th>Khách hàng</th>
+                  <th>Tổng tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Ngày tạo</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${stats.recentOrders.map(order => `
+                  <tr>
+                    <td>${order.orderNumber}</td>
+                    <td>${order.customerName}</td>
+                    <td>${order.formattedTotal}</td>
+                    <td><span class="badge badge-secondary">${order.statusLabel}</span></td>
+                    <td>${order.formattedDate}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          `;
+                    DOM.html(ordersContainer, table);
+                }
+            }
+
+            // Render user management card + users table
+            renderUserManagement();
+            renderUsersTable();
+        }
+
+        function renderUserManagement() {
+            const container = DOM.byId('userManagementCard');
+            if (!container) return;
+
+            const users = UserService.getAllUsers();
+            DOM.html(container, `
+                <div style="margin-bottom: var(--spacing-md);">
+                    <div style="font-weight: 600; margin-bottom: var(--spacing-xs);">Tổng tài khoản</div>
+                    <div style="font-size: var(--text-3xl); font-weight: 700;">${users.length}</div>
+                </div>
+                <div class="flex gap-sm">
+                    <button class="btn btn-sm btn-secondary" onclick="resetAllUsers()">Xóa toàn bộ users</button>
+                    <button class="btn btn-sm btn-secondary" onclick="resetFrontendUser()">Xóa phiên currentUser</button>
+                </div>
+                <p style="color: var(--text-secondary); font-size: var(--text-xs); margin-top: var(--spacing-sm);">
+                    Admin xem được mật khẩu vì đây là demo LocalStorage. Khi làm thật cần backend + hash mật khẩu.
+                </p>
+            `);
+        }
+
+        function initUsersUI() {
+            const input = DOM.byId('userSearchInput');
+            if (!input) return;
+
+            input.addEventListener('input', () => renderUsersTable());
+        }
+
+        function renderUsersTable() {
+            const wrap = DOM.byId('usersTableWrap');
+            if (!wrap) return;
+
+            const q = (DOM.byId('userSearchInput')?.value || '').trim().toLowerCase();
+            let users = UserService.getAllUsers();
+
+            if (q) {
+                users = users.filter(u => {
+                    const hay = `${u.name || ''} ${u.email || ''} ${u.phone || ''}`.toLowerCase();
+                    return hay.includes(q);
+                });
+            }
+
+            if (users.length === 0) {
+                DOM.html(wrap, '<p class="text-center" style="color: var(--text-secondary);">Không có tài khoản nào</p>');
+                return;
+            }
+
+            DOM.html(wrap, `
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Mật khẩu</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày tạo</th>
+                            <th>Last login</th>
+                            <th width="180">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${users.map(u => `
+                            <tr>
+                                <td><strong>${u.name || ''}</strong></td>
+                                <td>${u.email || ''}</td>
+                                <td>${u.phone || ''}</td>
+                                <td><code>${u.password || ''}</code></td>
+                                <td>
+                                    ${u.status === 'blocked'
+                    ? '<span class="badge badge-danger">Khóa</span>'
+                    : '<span class="badge badge-success">Hoạt động</span>'}
+                                </td>
+                                <td>${u.createdAt ? new Date(u.createdAt).toLocaleString('vi-VN') : ''}</td>
+                                <td>${u.lastLoginAt ? new Date(u.lastLoginAt).toLocaleString('vi-VN') : ''}</td>
+                                <td>
+                                    <div class="flex gap-sm">
+                                        <button class="btn btn-sm btn-secondary" onclick="toggleBlockUser('${u.id}')">
+                                            ${u.status === 'blocked' ? 'Mở khóa' : 'Khóa'}
+                                        </button>
+                                        <button class="btn btn-sm btn-text text-error" onclick="deleteUser('${u.id}')">Xóa</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `);
+        }
+
+        window.refreshUsers = function () {
+            renderUserManagement();
+            renderUsersTable();
+        };
+
+        window.deleteUser = function (id) {
+            if (!confirm('Xóa tài khoản này?')) return;
+            const r = UserService.deleteUser(id);
+            if (!r.success) alert(r.error || 'Không xóa được');
+            refreshUsers();
+        };
+
+        window.toggleBlockUser = function (id) {
+            const r = UserService.toggleBlock(id);
+            if (!r.success) alert(r.error || 'Không cập nhật được');
+            refreshUsers();
+        };
+
+        window.resetAllUsers = function () {
+            if (!confirm('Xóa toàn bộ users đã đăng ký?')) return;
+            Storage.set(CONFIG.STORAGE_KEYS.USERS, []);
+            refreshUsers();
+        };
+
+        // Global helper để admin xóa dữ liệu người dùng frontend
+        window.resetFrontendUser = function () {
+            if (!confirm('Xóa toàn bộ dữ liệu người dùng frontend (currentUser) trong trình duyệt?')) return;
+
+            try {
+                if (typeof Storage !== 'undefined' && Storage.remove) {
+                    Storage.remove('currentUser');
+                } else {
+                    localStorage.removeItem('currentUser');
+                }
+            } catch (e) {
+                console.error('Error clearing currentUser:', e);
+            }
+
+            renderUserManagement();
+        }
+    </script>
+</body>
+
+</html>

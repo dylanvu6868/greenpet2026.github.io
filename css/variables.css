@@ -1,0 +1,221 @@
+/* ===================================
+   CSS VARIABLES
+   Design System - GreenPet
+   Sustainable Web Design Approach
+   =================================== */
+
+:root {
+    /* ==================
+     PRIMARY COLORS (Updated to match reference)
+     ================== */
+    --color-primary: #7FB069;
+    /* Softer sage green - Nature, Sustainability */
+    --color-primary-light: #98C482;
+    /* Lighter green for hover */
+    --color-primary-dark: #6A9A57;
+    /* Darker green for active */
+    --color-primary-alpha: rgba(127, 176, 105, 0.1);
+    /* Transparent green */
+
+    /* ==================
+     SECONDARY COLORS
+     ================== */
+    --color-secondary: #2D3436;
+    /* Charcoal - Professional */
+    --color-secondary-light: #4A4A4A;
+    /* Lighter charcoal */
+    --color-secondary-alpha: rgba(45, 52, 54, 0.8);
+    /* Transparent black */
+
+    /* ==================
+     NEUTRAL COLORS (Updated to warm tones)
+     ================== */
+    --color-white: #ffffff;
+    /* White - Background */
+    --color-beige-50: #FAF8F3;
+    /* Almost white with warmth */
+    --color-beige-100: #F5F1E8;
+    /* Light beige - main background */
+    --color-beige-200: #EDE9DD;
+    /* Medium-light beige */
+    --color-gray-50: #fafafa;
+    /* Gray fallback */
+    --color-gray-100: #f5f5f5;
+    --color-gray-200: #e5e5e5;
+    --color-gray-300: #d4d4d4;
+    --color-gray-400: #a3a3a3;
+    --color-gray-500: #737373;
+    --color-gray-600: #525252;
+    --color-gray-700: #404040;
+
+    /* ==================
+     ACCENT COLORS (Updated)
+     ================== */
+    --color-coral: #FF9F89;
+    /* Coral/Peach for warm accents */
+    --color-orange: #FFB088;
+    /* Warm orange */
+
+    /* ==================
+     SEMANTIC COLORS
+     ================== */
+    --color-success: var(--color-primary);
+    --color-error: #E74C3C;
+    --color-warning: #F39C12;
+    --color-info: #5DADE2;
+
+    /* ==================
+     TEXT COLORS
+     ================== */
+    --text-primary: var(--color-secondary);
+    --text-secondary: #6C757D;
+    --text-tertiary: var(--color-gray-400);
+    --text-on-primary: var(--color-white);
+    --text-on-secondary: var(--color-white);
+    --text-disabled: var(--color-gray-300);
+
+    /* ==================
+     BACKGROUND COLORS (Updated to beige system)
+     ================== */
+    --bg-primary: var(--color-beige-100);
+    /* Changed from white to beige */
+    --bg-secondary: var(--color-beige-50);
+    --bg-tertiary: var(--color-beige-200);
+    --bg-white: var(--color-white);
+    /* For cards that need pure white */
+    --bg-dark: var(--color-secondary);
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+
+    /* ==================
+     BORDER COLORS
+     ================== */
+    --border-light: var(--color-beige-200);
+    --border-medium: var(--color-gray-300);
+    --border-dark: var(--color-gray-400);
+
+    /* ==================
+     TYPOGRAPHY (Updated to modern font stack)
+     ================== */
+    /* Font Families - Loading Inter as priority, fallback to system */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Courier New", monospace;
+
+    /* Font Sizes */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+    --text-5xl: 3rem;
+    /* 48px */
+
+    /* Font Weights */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* Line Heights */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+
+    /* ==================
+     SPACING
+     ================== */
+    --spacing-xs: 0.25rem;
+    /* 4px */
+    --spacing-sm: 0.5rem;
+    /* 8px */
+    --spacing-md: 1rem;
+    /* 16px */
+    --spacing-lg: 1.5rem;
+    /* 24px */
+    --spacing-xl: 2rem;
+    /* 32px */
+    --spacing-2xl: 3rem;
+    /* 48px */
+    --spacing-3xl: 4rem;
+    /* 64px */
+    --spacing-4xl: 6rem;
+    /* 96px */
+
+    /* ==================
+     LAYOUT
+     ================== */
+    --container-xs: 640px;
+    --container-sm: 768px;
+    --container-md: 1024px;
+    --container-lg: 1280px;
+    --container-xl: 1536px;
+
+    --content-max-width: 1280px;
+    /* Max width for main content */
+    --header-height: 4rem;
+    /* 64px */
+    --footer-height: auto;
+
+    /* ==================
+     BORDER RADIUS
+     ================== */
+    --radius-sm: 0.25rem;
+    /* 4px */
+    --radius-md: 0.5rem;
+    /* 8px */
+    --radius-lg: 0.75rem;
+    /* 12px */
+    --radius-xl: 1rem;
+    /* 16px */
+    --radius-full: 9999px;
+    /* Fully rounded */
+
+    /* ==================
+     SHADOWS
+     (Minimal - Sustainable Design)
+     ================== */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+    /* ==================
+     TRANSITIONS
+     (Minimal - Performance)
+     ================== */
+    --transition-fast: 150ms ease;
+    --transition-base: 200ms ease;
+    --transition-slow: 300ms ease;
+
+    /* ==================
+     Z-INDEX
+     ================== */
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-tooltip: 600;
+}
+
+/* ==================
+   DARK MODE SUPPORT (Optional - for Admin Panel)
+   ================== */
+@media (prefers-color-scheme: dark) {
+    .admin-area {
+        --bg-primary: var(--color-secondary);
+        --text-primary: var(--color-white);
+        --border-light: var(--color-gray-600);
+    }
+}

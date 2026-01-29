@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm - Admin GreenPet</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/admin-theme.css">
+</head>
+
+<body>
+    <!-- Horizontal Header -->
+    <!-- Admin Header will be rendered by admin-header.js -->
+    <div id="admin-header-placeholder"></div>
+
+    <main class="admin-page">
+        <div class="container">
+            <div class="page-header mb-xl flex justify-between items-center">
+                <h1 class="page-title">Quản lý sản phẩm</h1>
+                <a href="product-form.html" class="btn btn-primary">+ Thêm sản phẩm</a>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div id="loading" class="text-center py-2xl">
+                        <div class="spinner"></div>
+                    </div>
+
+                    <div id="productTableContainer" style="display: none;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="80">Ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Danh mục</th>
+                                    <th>Giá</th>
+                                    <th>Tồn kho</th>
+                                    <th>Trạng thái</th>
+                                    <th width="150">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productTableBody">
+                                <!-- Data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/data/storage.js"></script>
+    <script src="../js/data/database.js"></script>
+    <script src="../js/services/product-service.js"></script>
+    <script src="../js/services/admin-service.js"></script>
+    <script src="../js/services/product-service.js"></script>
+    <script src="../js/ui/dom-helpers.js"></script>
+    <script src="../js/ui/admin-header.js"></script>
+    <script src="../js/pages/admin-products.js"></script>
+    <script>
+        // Init page
+        document.addEventListener('DOMContentLoaded', () => {
+            // AdminHeader handles header
+        });
+    </script>
+</body>
+
+</html>

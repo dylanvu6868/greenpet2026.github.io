@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GreenPet - Quần áo thú cưng từ vật liệu tái chế, thân thiện môi trường">
+    <title>GreenPet - Quần Áo Thú Cưng Tái Chế</title>
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+</head>
+
+<script>
+    // Clear products cache to force reload new data
+    if (localStorage.getItem('greenpet_products')) {
+        console.log('Clearing old products cache...');
+        localStorage.removeItem('greenpet_products');
+    }
+
+    // Load Announcement Banner & Tracking
+    window.addEventListener('DOMContentLoaded', () => {
+        try {
+            const settings = JSON.parse(localStorage.getItem('greenpet_settings') || '{}');
+
+            // Banner
+            const banner = settings.banner;
+            if (banner && banner.enabled && banner.text) {
+                const bannerEl = document.getElementById('announcementBanner');
+                const textEl = document.getElementById('announcementText');
+                if (bannerEl && textEl) {
+                    bannerEl.style.display = 'block';
+                    bannerEl.style.backgroundColor = banner.color || '#2d7a3e';
+                    bannerEl.style.color = banner.textColor || '#ffffff';
+                    textEl.textContent = banner.text;
+                }
+            }
+
+            // Tracking
+            if (settings.store && settings.store.trackingId) {
+                console.log('Injecting Tracking ID:', settings.store.trackingId);
+                // Demo tracking injection
+                const script = document.createElement('script');
+                script.text = `console.log("Tracking initialized for: ${settings.store.trackingId}");`;
+                document.head.appendChild(script);
+            }
+        } catch (e) {
+            console.error('Error loading settings:', e);
+        }
+    });
+</script>
+
+<body>
+
+    <!-- Announcement Banner -->
+    <div id="announcementBanner"
+        style="display: none; padding: 10px; text-align: center; font-weight: 500; font-size: 14px; position: relative; z-index: 1000;">
+        <span id="announcementText"></span>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link active">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title" id="heroTitle">
+                        Quần Áo Thú Cưng Từ Vật Liệu Tái Chế
+                    </h1>
+                    <p class="hero-subtitle" id="heroSubtitle">
+                        Yêu thương thú cưng, bảo vệ hành tinh - Mỗi sản phẩm là một hành động vì môi trường
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+                    <p class="section-subtitle">
+                        Những sản phẩm được yêu thích nhất từ vật liệu tái chế
+                    </p>
+                </div>
+
+                <!-- Loading State -->
+                <div id="featuredLoader" class="flex justify-center py-3xl">
+                    <div class="spinner"></div>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="featuredProducts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg"
+                    style="display: none;">
+                    <!-- Products will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Features / Story Section -->
+        <!-- Sustainability Promotions Section - Phase 1 -->
+        <section class="section"
+            style="background: linear-gradient(135deg, #f0f9f4 0%, #e8f5ec 100%); position: relative; overflow: hidden;">
+            <!-- Decorative leaf patterns -->
+            <div
+                style="position: absolute; top: 20px; right: 50px; font-size: 4rem; opacity: 0.05; transform: rotate(-15deg);">
+                🌿</div>
+            <div
+                style="position: absolute; bottom: 30px; left: 40px; font-size: 5rem; opacity: 0.05; transform: rotate(25deg);">
+                ♻️</div>
+
+            <div class="container" style="position: relative; z-index: 1;">
+                <div class="section-header text-center mb-3xl">
+                    <div
+                        style="display: inline-block; padding: 0.5rem 1.5rem; background: rgba(45, 122, 62, 0.15); border-radius: 50px; margin-bottom: 1rem;">
+                        <span
+                            style="color: var(--color-primary); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">
+                            HÀNH ĐỘNG XANH</span>
+                    </div>
+                    <h2 class="section-title"
+                        style="color: var(--color-primary); font-size: 2.5rem; margin-bottom: 0.75rem; font-weight: 700;">
+                        Chương Trình Bền Vững
+                    </h2>
+                    <p class="section-subtitle" style="font-size: 1.1rem; color: var(--text-secondary);">Cùng GreenPet
+                        bảo vệ hành tinh xanh và mang lại giá trị cho khách hàng yêu thú cưng</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+                    <!-- Promo 1: Trade-in Program -->
+                    <div class="product-card-premium">
+                        <div class="product-card-image-premium" style="padding-top: 60%;">
+                            <a href="trade-in.html">
+                                <img src="./assets/images/trade-in-program.jpg" alt="Đổi Cũ Lấy Mới"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            </a>
+                            <!-- ECO badge -->
+                            <div class="product-badges-container">
+                                <span class="product-badge-new">ECO</span>
+                            </div>
+                        </div>
+                        <div class="product-card-body-premium">
+                            <a href="trade-in.html" class="product-card-title-premium">Đổi Cũ Lấy Mới</a>
+                            <p class="product-card-description">
+                                Mang quần áo cũ của thú cưng đến cửa hàng, chúng tôi sẽ tái chế và tặng bạn voucher
+                            </p>
+                            <div class="product-card-price-row">
+                                <div class="product-card-price-premium">
+                                    <span class="product-price-current">-10%</span>
+                                </div>
+                                <div class="product-stock-indicator">Liên hệ</div>
+                            </div>
+                            <div class="product-special-label">
+                                ♻️ Chương trình bền vững
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promo 2: Eco Combo -->
+                    <div class="product-card-premium">
+                        <div class="product-card-image-premium" style="padding-top: 60%;">
+                            <a href="eco-combo.html">
+                                <img src="./assets/images/eco-combo.jpg" alt="Combo Eco-Friendly"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            </a>
+                            <!-- Discount badge -->
+                            <div class="product-badges-container">
+                                <span class="product-badge-discount">-100K</span>
+                            </div>
+                        </div>
+                        <div class="product-card-body-premium">
+                            <a href="eco-combo.html" class="product-card-title-premium">Combo
+                                Eco-Friendly</a>
+                            <p class="product-card-description">
+                                Mua sản phẩm tái chế + Túi vải GreenPet (trị giá 50k) nhận ngay ưu đãi đặc biệt
+                            </p>
+                            <div class="product-card-price-row">
+                                <div class="product-card-price-premium">
+                                    <span class="product-price-current">-100.000đ</span>
+                                </div>
+                                <div class="product-stock-indicator">Còn 45 combo</div>
+                            </div>
+                            <div class="product-special-label">
+                                🌿 Giới hạn 50 combo/tháng
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promo 3: Green Points -->
+                    <div class="product-card-premium">
+                        <div class="product-card-image-premium" style="padding-top: 60%;">
+                            <a href="green-points.html">
+                                <img src="./assets/images/green-points.jpg" alt="Điểm Xanh Tích Lũy"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            </a>
+                            <!-- HOT badge -->
+                            <div class="product-badges-container">
+                                <span class="product-badge-new" style="background: #FF9F89;">HOT</span>
+                            </div>
+                        </div>
+                        <div class="product-card-body-premium">
+                            <a href="green-points.html" class="product-card-title-premium">Điểm Xanh Tích
+                                Lũy</a>
+                            <p class="product-card-description">
+                                Mỗi đơn hàng = 1 Điểm Xanh. Đủ 5 điểm đổi ngay quà tặng eco hoặc voucher đặc biệt
+                            </p>
+                            <div class="product-card-price-row">
+                                <div class="product-card-price-premium">
+                                    <span class="product-price-current">5 điểm</span>
+                                </div>
+
+                                <div class="product-stock-indicator">= Quà xanh</div>
+                            </div>
+                            <div class="product-special-label">
+                                Tự động tích điểm
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            /* Hover effects for sustainability cards */
+            .card.transition:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 16px 32px rgba(45, 122, 62, 0.3) !important;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(45, 122, 62, 0.4) !important;
+            }
+        </style>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/data/database.js"></script>
+    <script src="./js/data/validators.js"></script>
+    <script src="./js/data/initial-data.js"></script>
+    <script src="./js/services/product-service.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/wishlist-service.js"></script>
+    <script src="./js/services/order-service.js"></script>
+    <script src="./js/services/filter-service.js"></script>
+    <script src="./js/services/admin-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script src="./js/pages/home.js"></script>
+    <!-- Chatbot -->
+    <link rel="stylesheet" href="./css/chatbot.css">
+    <script src="./js/ui/chatbot.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin nhắn khách hàng - Admin GreenPet</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/admin-theme.css">
+</head>
+
+<body>
+    <!-- Admin Header will be rendered by admin-header.js -->
+    <div id="admin-header-placeholder"></div>
+
+    <main class="admin-page">
+        <div class="container">
+            <div class="page-header mb-xl">
+                <h1 class="page-title">Tin nhắn khách hàng</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div id="loading" class="text-center py-2xl">
+                        <div class="spinner"></div>
+                    </div>
+
+                    <div id="messagesTableContainer" style="display: none;">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="150">Ngày gửi</th>
+                                    <th width="200">Người gửi</th>
+                                    <th>Nội dung</th>
+                                    <th width="120">Trạng thái</th>
+                                    <th width="100">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="messagesTableBody">
+                                <!-- Data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Message Detail Modal -->
+    <div id="messageModal" class="modal"
+        style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div class="modal-content"
+            style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 8px;">
+            <span class="close"
+                style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2 id="modalSender" class="text-xl font-bold mb-md"></h2>
+            <div class="mb-sm text-sm text-gray" id="modalMeta"></div>
+            <div class="p-md bg-gray-50 rounded" id="modalContent" style="white-space: pre-wrap;"></div>
+            <div class="mt-lg text-right">
+                <button class="btn btn-primary" id="modalCloseBtn">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/data/storage.js"></script>
+    <script src="../js/services/admin-service.js"></script>
+    <script src="../js/ui/dom-helpers.js"></script>
+    <script src="../js/ui/admin-header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Auth handled by AdminHeader
+
+            // Logout Handler is now managed by AdminHeader component
+
+
+            loadMessages();
+
+            // Modal handlers
+            const modal = document.getElementById('messageModal');
+            const closeSpan = document.getElementsByClassName("close")[0];
+            const closeBtn = document.getElementById("modalCloseBtn");
+
+            function closeModal() {
+                modal.style.display = "none";
+            }
+
+            closeSpan.onclick = closeModal;
+            closeBtn.onclick = closeModal;
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+        });
+
+        function loadMessages() {
+            const container = document.getElementById('messagesTableContainer');
+            const tbody = document.getElementById('messagesTableBody');
+            const loading = document.getElementById('loading');
+
+            // Logic to get messages from localStorage
+            // Since AdminService doesn't have getMessages yet, we'll implement it inline first then refactor or assume it exists
+            const messages = Storage.get('greenpet_messages', []);
+
+            // Sort desc
+            messages.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            if (messages.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center">Chưa có tin nhắn nào</td></tr>';
+            } else {
+                tbody.innerHTML = messages.map(msg => {
+                    const isUnread = !msg.isRead;
+                    const rowClass = isUnread ? 'font-bold bg-gray-50' : '';
+
+                    return `
+                        <tr class="${rowClass}">
+                            <td>${new Date(msg.createdAt).toLocaleDateString('vi-VN')}</td>
+                            <td>
+                                <div>${msg.name}</div>
+                                <div class="text-xs text-gray">${msg.email}</div>
+                                <div class="text-xs text-gray">${msg.phone || ''}</div>
+                            </td>
+                            <td>
+                                <div style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                    ${msg.message}
+                                </div>
+                            </td>
+                            <td>
+                                ${isUnread
+                            ? '<span class="badge badge-primary">Mới</span>'
+                            : '<span class="badge badge-secondary">Đã xem</span>'}
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-secondary" onclick="viewMessage('${msg.id}')">Xem</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            loading.style.display = 'none';
+            container.style.display = 'block';
+        }
+
+        window.viewMessage = function (id) {
+            const messages = Storage.get('greenpet_messages', []);
+            const msg = messages.find(m => m.id === id);
+            if (!msg) return;
+
+            // Mark as read
+            if (!msg.isRead) {
+                msg.isRead = true;
+                Storage.set('greenpet_messages', messages);
+                loadMessages(); // Refresh UI
+            }
+
+            // Show modal
+            document.getElementById('modalSender').textContent = msg.name;
+            document.getElementById('modalMeta').textContent = `${msg.email} | ${new Date(msg.createdAt).toLocaleString('vi-VN')}`;
+            document.getElementById('modalContent').textContent = msg.message;
+            document.getElementById('messageModal').style.display = "block";
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Hàng Thành Công - GreenPet</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+    <style>
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto var(--spacing-lg);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-3xl">
+        <div class="container">
+            <div class="card max-w-lg mx-auto p-2xl text-center">
+                <div class="success-icon">✓</div>
+
+                <h1 class="text-3xl font-bold mb-md" style="color: var(--color-success);">Đặt Hàng Thành Công!</h1>
+
+                <p class="text-lg mb-xl text-secondary">
+                    Cảm ơn bạn đã mua hàng tại GreenPet. <br>
+                    Đơn hàng của bạn đang được xử lý.
+                </p>
+
+                <div class="bg-secondary p-md rounded-md mb-xl inline-block w-full">
+                    <p class="text-sm text-secondary mb-xs">Mã đơn hàng</p>
+                    <p class="text-xl font-bold font-mono" id="orderId">...</p>
+                </div>
+
+                <div class="flex flex-col gap-sm">
+                    <a href="products.html" class="btn btn-primary w-full justify-center">
+                        Tiếp tục mua sắm
+                    </a>
+                    <!-- In a real app, this would link to order history -->
+                    <a href="index.html" class="btn btn-secondary w-full justify-center">
+                        Về trang chủ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom text-center">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script>
+        // Simple script to get order ID from URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+
+            if (orderId) {
+                document.getElementById('orderId').textContent = orderId;
+            } else {
+                document.getElementById('orderId').textContent = 'N/A';
+            }
+        });
+    </script>
+</body>
+
+</html>

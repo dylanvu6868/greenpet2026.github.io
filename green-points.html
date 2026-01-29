@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Điểm Xanh Tích Lũy - GreenPet">
+    <title>Điểm Xanh Tích Lũy - GreenPet</title>
+
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+    <style>
+        .points-hero {
+            background: linear-gradient(180deg, #f0fdf4 0%, white 100%);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .earn-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            height: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        .earn-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+        }
+
+        .earn-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .reward-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .reward-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .reward-image {
+            height: 180px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .reward-content {
+            padding: 1.5rem;
+        }
+
+        .point-cost {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="profile.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero -->
+        <div class="points-hero mb-3xl">
+            <div class="container">
+                <h1 class="page-title mb-md">Điểm Xanh Tích Lũy</h1>
+                <p class="text-gray mb-xl text-lg">Hành trình sống xanh của bạn được ghi nhận và đền đáp xứng đáng.</p>
+
+                <div class="progress-container">
+                    <div class="flex justify-between items-center mb-sm">
+                        <strong class="text-primary">Thành viên Mới</strong>
+                        <strong class="text-gray">Thành viên VIP</strong>
+                    </div>
+                    <div style="background: #eee; height: 12px; border-radius: 6px; position: relative;">
+                        <div style="background: var(--color-primary); width: 30%; height: 100%; border-radius: 6px;">
+                        </div>
+                        <div
+                            style="position: absolute; top: 50%; left: 30%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: white; border: 3px solid var(--color-primary); border-radius: 50%;">
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray mt-sm text-center">Tích thêm <strong>3 điểm</strong> để mở khóa quà tặng
+                        tiếp theo!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pb-3xl">
+            <!-- How to Earn -->
+            <div class="mb-3xl">
+                <h2 class="text-2xl font-bold text-center mb-xl">Cách Thức Tích Điểm</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                    <div class="earn-card">
+                        <div class="earn-icon">🛍️</div>
+                        <h3 class="font-bold mb-xs">Mua Sắm</h3>
+                        <p class="text-gray mb-sm">Mỗi đơn hàng thành công bất kể giá trị.</p>
+                        <span class="badge" style="background: #e6fcf5; color: var(--color-primary);">+1 Điểm</span>
+                    </div>
+
+                    <div class="earn-card">
+                        <div class="earn-icon">⭐</div>
+                        <h3 class="font-bold mb-xs">Đánh Giá</h3>
+                        <p class="text-gray mb-sm">Viết đánh giá sản phẩm kèm hình ảnh.</p>
+                        <span class="badge" style="background: #e6fcf5; color: var(--color-primary);">+0.5 Điểm</span>
+                    </div>
+
+                    <div class="earn-card">
+                        <div class="earn-icon">♻️</div>
+                        <h3 class="font-bold mb-xs">Tái Chế</h3>
+                        <p class="text-gray mb-sm">Tham gia chương trình Đổi Cũ Lấy Mới.</p>
+                        <span class="badge" style="background: #e6fcf5; color: var(--color-primary);">+2 Điểm</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rewards Grid -->
+            <div>
+                <h2 class="text-2xl font-bold text-center mb-xl">Kho Quà Xanh</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-xl">
+                    <!-- Reward 1 -->
+                    <div class="reward-card">
+                        <div class="reward-content">
+                            <span class="point-cost">5 Điểm</span>
+                            <h3 class="font-bold text-lg mb-xs">Voucher 50K</h3>
+                            <p class="text-gray text-sm mb-md">Áp dụng cho đơn hàng từ 300k. Hạn dùng 30 ngày.</p>
+                            <button class="btn btn-secondary w-full" disabled>Chưa đủ điểm</button>
+                        </div>
+                    </div>
+
+                    <!-- Reward 2 -->
+                    <div class="reward-card">
+                        <div class="reward-content">
+                            <span class="point-cost">10 Điểm</span>
+                            <h3 class="font-bold text-lg mb-xs">Túi Tote Canvas</h3>
+                            <p class="text-gray text-sm mb-md">Túi vải GreenPet phiên bản giới hạn. Bền đẹp, thời trang.
+                            </p>
+                            <button class="btn btn-secondary w-full" disabled>Chưa đủ điểm</button>
+                        </div>
+                    </div>
+
+                    <!-- Reward 3 -->
+                    <div class="reward-card">
+                        <div class="reward-content">
+                            <span class="point-cost">15 Điểm</span>
+                            <h3 class="font-bold text-lg mb-xs">Sen Đá Mini</h3>
+                            <p class="text-gray text-sm mb-md">Chậu cây xanh trang trí xinh xắn kèm hướng dẫn chăm sóc.
+                            </p>
+                            <button class="btn btn-secondary w-full" disabled>Chưa đủ điểm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/wishlist-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            UIComponents.updateAuthLink();
+            UIComponents.updateHeaderCartCount(CartService.getItemCount());
+
+            const toggle = document.getElementById('mobileMenuToggle');
+            const nav = document.getElementById('siteNav');
+            if (toggle && nav) {
+                toggle.addEventListener('click', () => nav.classList.toggle('active'));
+            }
+        });
+    </script>
+</body>
+
+</html>

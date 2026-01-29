@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Đơn Hàng - GreenPet</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS System -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false,
+                container: false,
+            },
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        profile: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-green': 'var(--color-primary)',
+                        'brand-skin': '#fff7ed',
+                        'brand-skin-dark': '#ffedd5',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        .site-header,
+        .site-footer {
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        .profile-content-area {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fff7ed;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-brand-skin text-gray-700 leading-relaxed selection:bg-brand-green selection:text-white">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">&#9776;</button>
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="min-h-screen font-profile py-12">
+        <div class="container max-w-4xl mx-auto">
+
+            <!-- Breadcrumb -->
+            <a href="profile-orders.html"
+                class="inline-flex items-center text-gray-500 hover:text-brand-green font-medium mb-8 transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i> Quay lại lịch sử đơn hàng
+            </a>
+
+            <!-- Order Content -->
+            <div id="orderDetailContent"
+                class="bg-white rounded-3xl shadow-lg p-8 fade-in-up md:p-10 relative overflow-hidden">
+                <!-- Loading -->
+                <div class="animate-pulse flex flex-col items-center justify-center py-12">
+                    <div class="h-8 w-48 bg-gray-200 rounded mb-4"></div>
+                    <div class="h-4 w-32 bg-gray-200 rounded"></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links"><a href="index.html">Trang chủ</a><a href="products.html">Sản phẩm</a><a
+                            href="contact.html">Liên hệ</a></div>
+                </div>
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links"><a href="policies.html">Chính sách đổi trả</a><a
+                            href="policies.html">Chính sách bảo mật</a></div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p>Đại học FPT Hà Nội</p>
+                        <p>greenpet@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 GreenPet. Thiết kế bền vững. 🌿</div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/data/database.js"></script>
+    <script src="./js/services/order-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('id');
+            const container = document.getElementById('orderDetailContent');
+
+            if (!orderId) {
+                container.innerHTML = '<div class="text-center py-10">Không tìm thấy mã đơn hàng.</div>';
+                return;
+            }
+
+            const allOrders = OrderService.getAllOrders(); // Helper to search all
+            const order = allOrders.find(o => o.orderNumber === orderId);
+
+            if (!order) {
+                container.innerHTML = '<div class="text-center py-10">Không tìm thấy đơn hàng này.</div>';
+                return;
+            }
+
+            const formatted = OrderService.formatOrder(order);
+            const statusColor = order.status === 'completed' ? 'text-green-600 bg-green-50' : 'text-blue-600 bg-blue-50';
+
+            // Items HTML
+            const itemsHtml = order.items.map(item => `
+                <div class="flex gap-4 py-4 border-b border-gray-100 last:border-0">
+                    <div class="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="${item.image || './assets/images/placeholder-product.png'}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800">${item.productName}</h4>
+                        <p class="text-sm text-gray-500">x${item.quantity}</p>
+                    </div>
+                    <div class="font-bold text-gray-800">${(item.price * item.quantity).toLocaleString('vi-VN')}đ</div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-6 mb-6">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Đơn hàng #${order.orderNumber}</h1>
+                        <p class="text-gray-500 mt-1">Đặt ngày ${new Date(order.createdAt).toLocaleDateString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</p>
+                    </div>
+                    <span class="mt-4 md:mt-0 px-4 py-2 rounded-full text-sm font-bold ${statusColor}">
+                        ${formatted.statusLabel}
+                    </span>
+                </div>
+
+                <!-- Shipping Info -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                     <div>
+                        <h3 class="font-bold text-gray-800 mb-2 uppercase text-xs tracking-wider text-brand-green">Địa chỉ nhận hàng</h3>
+                        <p class="font-bold text-gray-900">${order.shippingInfo.fullName}</p>
+                        <p class="text-gray-600">${order.shippingInfo.phone}</p>
+                        <p class="text-gray-600">${order.shippingInfo.address}</p>
+                     </div>
+                     <div>
+                        <h3 class="font-bold text-gray-800 mb-2 uppercase text-xs tracking-wider text-brand-green">Thanh toán</h3>
+                        <p class="text-gray-600">Phương thức: <span class="font-bold text-gray-800">${order.paymentMethod === 'cod' ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản'}</span></p>
+                        <p class="text-gray-600">Trạng thái: <span class="text-gray-800">${order.status === 'completed' ? 'Đã thanh toán' : 'Chưa thanh toán'}</span></p>
+                     </div>
+                </div>
+
+                <!-- Items -->
+                <div class="bg-gray-50 rounded-2xl p-6 mb-8">
+                    <h3 class="font-bold text-gray-800 mb-4">Sản phẩm</h3>
+                    ${itemsHtml}
+                </div>
+
+                <!-- Summary -->
+                <div class="flex flex-col items-end border-t border-gray-100 pt-6">
+                    <div class="w-full md:w-1/2 space-y-2">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Tạm tính</span>
+                            <span>${formatted.formattedTotal}</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Phí vận chuyển</span>
+                            <span>0đ</span>
+                        </div>
+                        <div class="flex justify-between text-xl font-bold text-brand-green pt-4 border-t border-gray-200 mt-2">
+                            <span>Tổng cộng</span>
+                            <span>${formatted.formattedTotal}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+
+</html>

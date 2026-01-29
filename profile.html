@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Cá Nhân - GreenPet</title>
+
+    <!-- Google Fonts: Inter (Global) & Quicksand (Profile) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS System -->
+    <!-- Tailwind First to avoid overriding site resets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false, // CRITICAL: Disable base reset to match Index Header
+                container: false, // CRITICAL: Disable Tailwind container to use layout.css container
+            },
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Reset global font to Inter
+                        profile: ['Quicksand', 'sans-serif'], // Custom font for Profile
+                    },
+                    colors: {
+                        'brand-green': 'var(--color-primary)', // Sync with site theme
+                        'brand-skin': '#fff7ed',
+                        'brand-skin-dark': '#ffedd5',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Force container to match layout.css (Index behavior) */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            /* Standard from layout.css */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        /* Ensure Header/Footer text sizes match Index and use Inter */
+        .site-header,
+        .site-footer {
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        /* Profile Page Specifics (Soft Luxury) */
+        .profile-content-area {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fff7ed;
+            /* brand-skin */
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-brand-skin text-gray-700 leading-relaxed selection:bg-brand-green selection:text-white">
+
+    <!-- Header (EXACT COPY FROM INDEX.HTML) -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link active">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="min-h-screen font-profile">
+        <div class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Sticky Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-3xl shadow-lg overflow-hidden sticky top-8 fade-in-up">
+                        <!-- Cover -->
+                        <div class="h-32 bg-gradient-to-r from-brand-green to-emerald-400"></div>
+
+                        <!-- Avatar & Info -->
+                        <div class="px-6 pb-8 text-center -mt-16">
+                            <div class="relative inline-block">
+                                <!-- Avatar with Upload Overlay -->
+                                <!-- Avatar with Upload Overlay -->
+                                <label for="avatarInput" id="avatarWrapper"
+                                    class="group relative block w-32 h-32 rounded-full border-4 border-white shadow-md bg-gray-100 overflow-hidden cursor-pointer">
+                                    <img src="./assets/images/avatar-placeholder.png" id="avatarImg" alt="Profile"
+                                        class="w-full h-full object-cover">
+                                    <div
+                                        class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs">
+                                        <i class="fas fa-camera mr-1"></i> Đổi ảnh
+                                    </div>
+                                    <!-- Hidden Input -->
+                                    <input type="file" id="avatarInput" class="hidden" accept="image/*">
+                                </label>
+                                <div class="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-2 border-white rounded-full"
+                                    title="Thành viên tích cực"></div>
+                            </div>
+                            <p class="text-brand-green font-medium">Thành viên Thân thiết</p>
+
+                            <!-- Quick Stats -->
+                            <div class="flex justify-center gap-6 mt-6 border-t border-b border-gray-100 py-4">
+                                <div class="text-center">
+                                    <span class="block font-bold text-lg text-gray-800" id="orderCount">0</span>
+                                    <span class="text-xs text-gray-500 uppercase tracking-wide">Đơn hàng</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="block font-bold text-lg text-gray-800">0</span>
+                                    <span class="text-xs text-gray-500 uppercase tracking-wide">Điểm</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="block font-bold text-lg text-gray-800">Gold</span>
+                                    <span class="text-xs text-gray-500 uppercase tracking-wide">Hạng</span>
+                                </div>
+                            </div>
+
+                            <!-- Menu -->
+                            <div class="mt-6 space-y-2 text-left">
+                                <a href="index.html"
+                                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-brand-skin text-gray-600 hover:text-brand-green transition-all">
+                                    <i class="fas fa-arrow-left w-6"></i> Trang chủ
+                                </a>
+                                <button onclick="scrollToSection('info')"
+                                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-brand-skin text-brand-green font-medium transition-all">
+                                    <i class="fas fa-user w-6"></i> Thông tin cá nhân
+                                </button>
+                                <button onclick="scrollToSection('orders')"
+                                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-brand-skin text-gray-600 hover:text-brand-green transition-all">
+                                    <i class="fas fa-shopping-bag w-6"></i> Đơn hàng gần đây
+                                </button>
+                                <button onclick="logout()"
+                                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-50 text-red-500 transition-all">
+                                    <i class="fas fa-sign-out-alt w-6"></i> Đăng xuất
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="lg:col-span-2 space-y-8">
+
+                    <!-- Section 1: Personal Info -->
+                    <div id="section-info" class="bg-white rounded-3xl shadow-sm p-8 fade-in-up">
+                        <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2 mb-6">
+                            <span class="w-2 h-6 bg-brand-green rounded-full"></span>
+                            Thông tin tài khoản
+                        </h2>
+
+                        <form id="profileForm" class="space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Họ và tên</label>
+                                    <div class="relative">
+                                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-brand-green"><i
+                                                class="fas fa-user"></i></span>
+                                        <input type="text" id="profileName"
+                                            class="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-skin border-none focus:ring-2 focus:ring-brand-green transition-all outline-none"
+                                            value="" placeholder="Nhập họ và tên của bạn">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Số điện thoại</label>
+                                    <div class="relative">
+                                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-brand-green"><i
+                                                class="fas fa-phone"></i></span>
+                                        <input type="tel" id="profilePhone"
+                                            class="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-skin border-none focus:ring-2 focus:ring-brand-green transition-all outline-none"
+                                            value="0987654321">
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                                    <div class="relative">
+                                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"><i
+                                                class="fas fa-envelope"></i></span>
+                                        <input type="email" id="profileEmail"
+                                            class="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 text-gray-500 border-none cursor-not-allowed"
+                                            value="user@example.com" disabled>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-bold text-gray-700 mb-2">Địa chỉ giao hàng</label>
+                                    <div class="relative">
+                                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-brand-green"><i
+                                                class="fas fa-map-marker-alt"></i></span>
+                                        <input type="text" id="profileAddress"
+                                            class="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-skin border-none focus:ring-2 focus:ring-brand-green transition-all outline-none"
+                                            value="Hòa Lạc, Hà Nội">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4 text-right">
+                                <button type="submit"
+                                    class="px-8 py-3 rounded-xl bg-brand-green text-white font-bold hover:bg-emerald-700 shadow-lg shadow-emerald-200 transform hover:-translate-y-1 transition-all">
+                                    <i class="fas fa-save mr-2"></i> Lưu thay đổi
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Section 2: Recent Orders -->
+                    <div id="section-orders" class="bg-white rounded-3xl shadow-sm p-8 fade-in-up"
+                        style="animation-delay: 0.1s;">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                                <span class="w-2 h-6 bg-brand-green rounded-full"></span>
+                                Đơn hàng gần đây
+                            </h2>
+                            <a href="profile-orders.html" class="text-sm font-bold text-brand-green hover:underline">Xem
+                                tất cả <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+
+                        <!-- Empty State Placeholder (Populated by JS) -->
+                        <div id="recentOrdersList" class="space-y-4">
+                            <!-- Loading Skeleton -->
+                            <div class="animate-pulse flex space-x-4">
+                                <div class="flex-1 space-y-4 py-1">
+                                    <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                                    <div class="space-y-2">
+                                        <div class="h-4 bg-gray-200 rounded"></div>
+                                        <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (EXACT COPY FROM INDEX.HTML) -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/data/database.js"></script>
+    <script src="./js/data/validators.js"></script>
+    <script src="./js/data/initial-data.js"></script>
+    <script src="./js/services/product-service.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/wishlist-service.js"></script>
+    <script src="./js/services/order-service.js"></script>
+    <script src="./js/services/filter-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+
+    <!-- Profile Logic -->
+    <script src="./js/pages/profile.js"></script>
+</body>
+
+</html>

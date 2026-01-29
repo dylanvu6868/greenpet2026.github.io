@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - Admin GreenPet</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/admin-theme.css">
+    <!-- Custom styles moved to admin-theme.css -->
+</head>
+
+<body>
+    <!-- Horizontal Header -->
+    <!-- Admin Header will be rendered by admin-header.js -->
+    <div id="admin-header-placeholder"></div>
+
+    <main class="admin-page">
+        <div class="container" style="max-width: 800px;">
+            <div class="page-header mb-xl">
+                <h1 class="page-title" id="pageTitle">Thêm sản phẩm mới</h1>
+            </div>
+
+            <form id="productForm">
+                <div class="card mb-lg">
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold mb-md">Thông tin cơ bản</h3>
+
+                        <div class="form-group mb-md">
+                            <label class="form-label">Tên sản phẩm *</label>
+                            <input type="text" id="name" class="form-control" required
+                                placeholder="Ví dụ: Áo len tái chế">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-md mb-md">
+                            <div class="form-group">
+                                <label class="form-label">Danh mục *</label>
+                                <select id="categoryId" class="form-control" required>
+                                    <option value="">-- Chọn danh mục --</option>
+                                    <option value="cat-clothes">Quần áo mèo</option>
+                                    <option value="dog-clothes">Quần áo chó</option>
+                                    <option value="accessories">Phụ kiện</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tồn kho *</label>
+                                <input type="number" id="stock" class="form-control" required min="0" value="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-md">
+                            <label class="form-label">Kích thước (phân cách bằng dấu phẩy) *</label>
+                            <input type="text" id="sizes" class="form-control" placeholder="Ví dụ: S, M, L, XL"
+                                required>
+                            <p class="text-xs text-gray mt-xs">Nhập "Freesize" cho phụ kiện nếu cần.</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-md mb-md">
+                            <div class="form-group">
+                                <label class="form-label">Giá bán (VNĐ) *</label>
+                                <input type="number" id="price" class="form-control" required min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Giá gốc (VNĐ)</label>
+                                <input type="number" id="compareAtPrice" class="form-control" min="0"
+                                    placeholder="Để trống nếu không giảm giá">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-md mb-md">
+                            <div class="form-group">
+                                <label class="form-label">Tỷ lệ tái chế (%) *</label>
+                                <input type="number" id="recycledContent" class="form-control" required min="0"
+                                    max="100" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Chất liệu</label>
+                                <input type="text" id="material" class="form-control"
+                                    placeholder="VD: Polyester tái chế, Cotton hữu cơ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-lg">
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold mb-md">Hình ảnh & Mô tả</h3>
+                        <div class="form-group mb-md">
+                            <label class="form-label">Link ảnh (URL) *</label>
+                            <input type="text" id="imageUrl" class="form-control" required
+                                placeholder="./assets/images/products/...">
+                            <p class="text-xs text-gray mt-xs">Hiện tại hỗ trợ nhập link ảnh trực tiếp.</p>
+                        </div>
+
+                        <div class="form-group mb-md">
+                            <label class="form-label">Mô tả ngắn *</label>
+                            <textarea id="description" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Mô tả chi tiết</label>
+                            <textarea id="longDescription" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-lg">
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold mb-md">Tối ưu SEO</h3>
+                        <div class="form-group mb-md">
+                            <label class="form-label">Tiêu đề (Meta Title)</label>
+                            <input type="text" id="seoTitle" class="form-control"
+                                placeholder="Để trống sẽ dùng tên sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mô tả (Meta Description)</label>
+                            <textarea id="seoDescription" class="form-control" rows="3"
+                                placeholder="Để trống sẽ dùng mô tả ngắn"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-lg">
+                    <div class="card-body">
+                        <h3 class="text-xl font-bold mb-md">Cài đặt khác</h3>
+                        <div class="flex items-center gap-xl">
+                            <label class="flex items-center gap-sm cursor-pointer">
+                                <input type="checkbox" id="isActive" checked>
+                                <span>Đang bán</span>
+                            </label>
+                            <label class="flex items-center gap-sm cursor-pointer">
+                                <input type="checkbox" id="isFeatured">
+                                <span>Sản phẩm nổi bật</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end gap-md">
+                        <a href="products.html" class="btn btn-text">Hủy bỏ</a>
+                        <button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
+                    </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/data/storage.js"></script>
+    <script src="../js/data/database.js"></script>
+    <script src="../js/data/validators.js"></script>
+    <script src="../js/services/product-service.js"></script>
+    <script src="../js/services/admin-service.js"></script>
+    <script src="../js/services/product-service.js"></script>
+    <script src="../js/ui/dom-helpers.js"></script>
+    <script src="../js/ui/admin-header.js"></script>
+    <script src="../js/pages/admin-product-form.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // AdminHeader handles header
+        });
+    </script>
+</body>
+
+</html>

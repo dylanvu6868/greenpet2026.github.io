@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt - Admin GreenPet</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/admin-theme.css">
+</head>
+
+<body>
+    <!-- Admin Header will be rendered by admin-header.js -->
+    <div id="admin-header-placeholder"></div>
+
+    <main class="admin-page">
+        <div class="container">
+            <div class="page-header mb-xl">
+                <h1 class="page-title">Cài đặt hệ thống</h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2xl">
+                <!-- Banner Settings -->
+                <div class="card">
+                    <div class="card-header">Banner thông báo</div>
+                    <div class="card-body">
+                        <form id="bannerForm">
+                            <div class="form-group flex items-center gap-sm">
+                                <input type="checkbox" id="bannerEnabled" name="bannerEnabled"
+                                    style="width: 20px; height: 20px;">
+                                <label for="bannerEnabled" class="form-label mb-0">Hiển thị banner</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Nội dung thông báo</label>
+                                <input type="text" class="form-control" id="bannerText" name="bannerText"
+                                    placeholder="Ví dụ: Giảm giá 50% toàn bộ cửa hàng!">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Màu nền</label>
+                                <div class="flex gap-sm">
+                                    <input type="color" class="form-control" id="bannerColor" name="bannerColor"
+                                        value="#2d7a3e" style="width: 60px; padding: 2px;">
+                                    <input type="text" class="form-control" id="bannerColorText" value="#2d7a3e"
+                                        readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Màu chữ</label>
+                                <div class="flex gap-sm">
+                                    <input type="color" class="form-control" id="bannerTextColor" name="bannerTextColor"
+                                        value="#ffffff" style="width: 60px; padding: 2px;">
+                                    <input type="text" class="form-control" id="bannerTextColorText" value="#ffffff"
+                                        readonly>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Lưu cài đặt</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Other Settings -->
+                <div class="card">
+                    <div class="card-header">Thông tin cửa hàng</div>
+                    <div class="card-body">
+                        <form id="storeInfoForm">
+                            <div class="form-group">
+                                <label class="form-label">Google Analytics / Tracking ID</label>
+                                <input type="text" class="form-control" id="trackingId"
+                                    placeholder="UA-XXXXX-Y hoặc G-XXXXXX">
+                                <p class="text-xs text-gray mt-xs">Mã này sẽ được chèn vào trang chủ.</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Số điện thoại hotline</label>
+                                <input type="text" class="form-control" id="hotline" value="0976774094">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/data/storage.js"></script>
+    <script src="../js/services/admin-service.js"></script>
+    <script src="../js/services/admin-service.js"></script>
+    <script src="../js/ui/dom-helpers.js"></script>
+    <script src="../js/ui/admin-header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Logout Handler managed by admin-header.js
+
+            // Auth handled by AdminHeader
+
+            // Load Settings
+            const settings = await AdminService.getSettings();
+
+            // Banner
+            const banner = settings.banner || { enabled: false, text: '', color: '#2d7a3e', textColor: '#ffffff' };
+            document.getElementById('bannerEnabled').checked = banner.enabled;
+            document.getElementById('bannerText').value = banner.text;
+            document.getElementById('bannerColor').value = banner.color;
+            document.getElementById('bannerColorText').value = banner.color;
+            document.getElementById('bannerTextColor').value = banner.textColor;
+            document.getElementById('bannerTextColorText').value = banner.textColor;
+
+            // Color picker sync
+            document.getElementById('bannerColor').addEventListener('input', (e) => {
+                document.getElementById('bannerColorText').value = e.target.value;
+            });
+            document.getElementById('bannerTextColor').addEventListener('input', (e) => {
+                document.getElementById('bannerTextColorText').value = e.target.value;
+            });
+
+            // Submit Banner
+            document.getElementById('bannerForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const newSettings = {
+                    banner: {
+                        enabled: document.getElementById('bannerEnabled').checked,
+                        text: document.getElementById('bannerText').value,
+                        color: document.getElementById('bannerColor').value,
+                        textColor: document.getElementById('bannerTextColor').value
+                    }
+                };
+
+                const result = await AdminService.updateSettings(newSettings);
+                if (result.success) {
+                    alert('Đã lưu cài đặt banner');
+                } else {
+                    alert('Có lỗi xảy ra');
+                }
+            });
+
+            // Load Store Info
+            if (settings.store) {
+                document.getElementById('trackingId').value = settings.store.trackingId || '';
+                document.getElementById('hotline').value = settings.store.hotline || '0976774094';
+            }
+
+            // Submit Store Info
+            document.getElementById('storeInfoForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const newSettings = {
+                    store: {
+                        trackingId: document.getElementById('trackingId').value,
+                        hotline: document.getElementById('hotline').value
+                    }
+                };
+
+                const result = await AdminService.updateSettings(newSettings);
+                if (result.success) {
+                    alert('Đã lưu thông tin cửa hàng');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

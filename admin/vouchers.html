@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Mã Giảm Giá - Admin GreenPet</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/admin-theme.css">
+</head>
+
+<body>
+    <!-- Admin Header will be rendered by admin-header.js -->
+    <div id="admin-header-placeholder"></div>
+
+    <main class="admin-page">
+        <div class="container">
+            <div class="page-header mb-xl flex justify-between items-center">
+                <h1 class="page-title">Quản lý Mã Giảm Giá</h1>
+                <button class="btn btn-primary" id="openAddVoucherModal">+ Thêm mã mới</button>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div id="vouchersTableContainer">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Mã code</th>
+                                    <th>Giảm giá</th>
+                                    <th>Đơn tối thiểu</th>
+                                    <th>Lượt dùng</th>
+                                    <th>Hết hạn</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vouchersTableBody">
+                                <!-- Data populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Voucher Modal -->
+    <div id="voucherModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-xl font-bold mb-md">Thêm mã giảm giá</h2>
+            <form id="voucherForm">
+                <div class="form-group mb-md">
+                    <label class="form-label">Mã Code</label>
+                    <input type="text" class="form-control" name="code" required placeholder="VD: SALE50"
+                        style="text-transform: uppercase;">
+                </div>
+
+                <div class="grid grid-cols-2 gap-md mb-md">
+                    <div class="form-group">
+                        <label class="form-label">Loại giảm giá</label>
+                        <select class="form-control" name="discountType">
+                            <option value="percent">Phần trăm (%)</option>
+                            <option value="fixed">Số tiền (VNĐ)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Giá trị giảm</label>
+                        <input type="number" class="form-control" name="discountValue" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-md mb-md">
+                    <div class="form-group">
+                        <label class="form-label">Đơn tối thiểu</label>
+                        <input type="number" class="form-control" name="minOrderValue" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Giới hạn lượt dùng</label>
+                        <input type="number" class="form-control" name="maxUsage" value="100">
+                    </div>
+                </div>
+
+                <div class="form-group mb-lg">
+                    <label class="form-label">Ngày hết hạn</label>
+                    <input type="date" class="form-control" name="expiryDate" required>
+                </div>
+
+                <div class="flex justify-end gap-sm">
+                    <button type="button" class="btn btn-secondary" id="closeModalBtn">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Tạo mã</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/data/storage.js"></script>
+    <script src="../js/services/admin-service.js"></script>
+    <script src="../js/services/voucher-service.js"></script>
+    <script src="../js/ui/dom-helpers.js"></script>
+    <script src="../js/ui/admin-header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Auth handled by AdminHeader
+
+            loadVouchers();
+
+            // Modal Logic
+            const modal = document.getElementById('voucherModal');
+            const openBtn = document.getElementById('openAddVoucherModal');
+            const closeBtn = document.getElementById('closeModalBtn');
+            const form = document.getElementById('voucherForm');
+
+            if (openBtn) openBtn.onclick = () => modal.style.display = "block";
+            if (closeBtn) closeBtn.onclick = () => modal.style.display = "none";
+
+            window.onclick = (e) => {
+                if (e.target == modal) modal.style.display = "none";
+            };
+
+            // Creating Voucher
+            if (form) {
+                form.onsubmit = (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    const data = {
+                        code: formData.get('code'),
+                        discountType: formData.get('discountType'),
+                        discountValue: formData.get('discountValue'),
+                        minOrderValue: formData.get('minOrderValue'),
+                        maxUsage: formData.get('maxUsage'),
+                        expiryDate: formData.get('expiryDate')
+                    };
+
+                    const result = VoucherService.createVoucher(data);
+                    if (result.success) {
+                        alert('Tạo mã thành công');
+                        form.reset();
+                        modal.style.display = "none";
+                        loadVouchers();
+                    } else {
+                        alert(result.error);
+                    }
+                };
+            }
+        });
+
+        function loadVouchers() {
+            const tbody = document.getElementById('vouchersTableBody');
+            const vouchers = VoucherService.getAllVouchers();
+
+            if (vouchers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center">Chưa có mã giảm giá nào</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = vouchers.map(v => {
+                const discountDisplay = v.discountType === 'percent'
+                    ? `${v.discountValue}%`
+                    : `${new Intl.NumberFormat('vi-VN').format(v.discountValue)}đ`;
+
+                const isExpired = new Date(v.expiryDate) < new Date();
+
+                return `
+                <tr style="${isExpired ? 'opacity: 0.6;' : ''}">
+                    <td><strong>${v.code}</strong></td>
+                    <td class="text-success">${discountDisplay}</td>
+                    <td>${new Intl.NumberFormat('vi-VN').format(v.minOrderValue)}đ</td>
+                    <td>${v.usedCount} / ${v.maxUsage}</td>
+                    <td>${new Date(v.expiryDate).toLocaleDateString('vi-VN')}</td>
+                    <td>
+                        <button class="btn btn-sm btn-text text-error" onclick="deleteVoucher('${v.id}')">Xóa</button>
+                    </td>
+                </tr>
+            `;
+            }).join('');
+        }
+
+        window.deleteVoucher = function (id) {
+            if (confirm('Xóa mã này?')) {
+                VoucherService.deleteVoucher(id);
+                loadVouchers();
+            }
+        };
+    </script>
+</body>
+
+</html>

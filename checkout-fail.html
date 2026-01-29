@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Hàng Thất Bại - GreenPet</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+    <style>
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-error);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto var(--spacing-lg);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-3xl">
+        <div class="container">
+            <div class="card max-w-lg mx-auto p-2xl text-center">
+                <div class="error-icon">!</div>
+
+                <h1 class="text-3xl font-bold mb-md" style="color: var(--color-error);">Đặt Hàng Thất Bại</h1>
+
+                <p class="text-lg mb-lg text-secondary">
+                    Rất tiếc, đã có lỗi xảy ra trong quá trình xử lý đơn hàng của bạn.
+                </p>
+
+                <div class="bg-error-light p-md rounded-md mb-xl inline-block w-full"
+                    style="background-color: #fee2e2;">
+                    <p class="text-sm text-error mb-xs" style="color: #991b1b;">Chi tiết lỗi</p>
+                    <p class="text-md font-medium" id="errorMessage" style="color: #ef4444;">Không xác định</p>
+                </div>
+
+                <div class="flex flex-col gap-sm">
+                    <a href="checkout.html" class="btn btn-primary w-full justify-center">
+                        Thử lại
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary w-full justify-center">
+                        Liên hệ hỗ trợ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom text-center">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+
+            if (error) {
+                document.getElementById('errorMessage').textContent = decodeURIComponent(error);
+            }
+        });
+    </script>
+</body>
+
+</html>

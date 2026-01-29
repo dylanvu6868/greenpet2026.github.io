@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sản phẩm quần áo thú cưng tái chế - GreenPet">
+    <title>Sản Phẩm - GreenPet</title>
+
+    <!-- CSS -->
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-2xl">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header mb-2xl">
+                <h1 class="page-title">Sản Phẩm</h1>
+            </div>
+
+            <div class="flex gap-xl" style="flex-direction: row; align-items: flex-start;">
+                <!-- Filter Sidebar -->
+                <aside class="filter-sidebar mobile-hidden" style="width: 280px; flex-shrink: 0;">
+                    <!-- Categories -->
+                    <div class="filter-group">
+                        <div class="filter-title">Danh Mục</div>
+                        <div class="filter-options" id="categoryFilters">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Sizes -->
+                    <div class="filter-group">
+                        <div class="filter-title">Size</div>
+                        <div class="filter-options" id="sizeFilters">
+                            <!-- Sizes will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="filter-group">
+                        <div class="filter-title">Khoảng Giá</div>
+                        <div class="filter-options" id="priceFilters">
+                            <!-- Price ranges will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Recycled Content -->
+                    <div class="filter-group">
+                        <div class="filter-title">Tỷ Lệ Tái Chế</div>
+                        <div class="filter-options">
+                            <label class="form-check">
+                                <input type="checkbox" class="form-check-input" name="minRecycled" value="80"
+                                    data-filter="recycled">
+                                <span class="form-check-label">Từ 80% trở lên</span>
+                            </label>
+                            <label class="form-check">
+                                <input type="checkbox" class="form-check-input" name="minRecycled" value="90"
+                                    data-filter="recycled">
+                                <span class="form-check-label">Từ 90% trở lên</span>
+                            </label>
+                            <label class="form-check">
+                                <input type="checkbox" class="form-check-input" name="minRecycled" value="100"
+                                    data-filter="recycled">
+                                <span class="form-check-label">100% tái chế</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Clear Filters -->
+                    <button class="btn btn-secondary w-full mt-lg" id="clearFilters">
+                        Xóa bộ lọc
+                    </button>
+                </aside>
+
+                <!-- Products Area -->
+                <div class="flex-1">
+                    <!-- Toolbar -->
+                    <div class="flex justify-between items-center mb-lg" style="flex-wrap: wrap; gap: 1rem;">
+                        <!-- Search -->
+                        <div class="flex-1" style="min-width: 240px;">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." id="searchInput">
+                        </div>
+
+                        <!-- Sort -->
+                        <div>
+                            <select class="form-control" id="sortSelect" style="min-width: 180px;">
+                                <option value="">Sắp xếp</option>
+                                <option value="newest">Mới nhất</option>
+                                <option value="price-asc">Giá: Thấp → Cao</option>
+                                <option value="price-desc">Giá: Cao → Thấp</option>
+                                <option value="name-asc">Tên: A → Z</option>
+                                <option value="recycled-desc">% Tái chế cao nhất</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Active Filters -->
+                    <div id="activeFilters" class="mb-lg" style="display: none;">
+                        <div class="flex gap-sm" style="flex-wrap: wrap; align-items: center;">
+                            <span class="text-sm font-medium">Bộ lọc đang áp dụng:</span>
+                            <div id="activeFiltersList" class="flex gap-sm" style="flex-wrap: wrap;">
+                                <!-- Active filters will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Summary -->
+                    <div id="resultsSummary" class="mb-md text-sm" style="color: var(--text-secondary);">
+                        <!-- Summary will be rendered here -->
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="productsLoader" class="flex justify-center py-3xl">
+                        <div class="spinner"></div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg mb-2xl"
+                        style="display: none;">
+                        <!-- Products will be rendered here -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div id="paginationContainer" class="flex justify-center">
+                        <!-- Pagination will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/data/database.js"></script>
+    <script src="./js/data/validators.js"></script>
+    <script src="./js/data/initial-data.js"></script>
+    <script src="./js/services/product-service.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/wishlist-service.js"></script>
+    <script src="./js/services/filter-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script src="./js/pages/products.js"></script>
+</body>
+
+</html>

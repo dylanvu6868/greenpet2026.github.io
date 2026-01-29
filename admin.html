@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - GreenPet</title>
+  <meta http-equiv="refresh" content="0; url=admin/login.html" />
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/variables.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/pages.css" />
+</head>
+
+<body>
+  <main class="section">
+    <div class="container">
+      <div class="card" style="max-width: 520px; margin: 0 auto;">
+        <div class="card-body">
+          <h1 class="text-2xl font-bold mb-md">Admin Portal</h1>
+          <p class="mb-lg" style="color: var(--text-secondary);">
+            Đang chuyển hướng tới trang đăng nhập admin…
+          </p>
+          <a class="btn btn-primary" href="admin/login.html">Đi tới Admin Login</a>
+          <a class="btn btn-text" href="index.html">← Về trang chủ</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/data/storage.js"></script>
+  <script>
+    // If already logged in, go straight to dashboard
+    (function () {
+      try {
+        const token = (typeof Storage !== 'undefined' && Storage.get)
+          ? Storage.get(CONFIG.STORAGE_KEYS.ADMIN_TOKEN)
+          : JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.ADMIN_TOKEN));
+        if (token) {
+          window.location.replace('admin/index.html');
+        } else {
+          window.location.replace('admin/login.html');
+        }
+      } catch {
+        window.location.replace('admin/login.html');
+      }
+    })();
+  </script>
+</body>
+
+</html>

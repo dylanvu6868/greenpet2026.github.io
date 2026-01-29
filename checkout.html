@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán - GreenPet</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <!-- Navigation -->
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+                <!-- Actions -->
+                <div class="header-actions">
+                    <a href="login.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+
+                    <!-- Wishlist Icon -->
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-2xl">
+        <div class="container">
+            <h1 class="page-title mb-2xl">Thanh Toán</h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+                <!-- Checkout Form -->
+                <div class="lg:col-span-2">
+                    <form id="checkoutForm">
+                        <!-- Customer Info -->
+                        <div class="card mb-lg">
+                            <div class="card-header">Thông Tin Khách Hàng</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label form-label-required">Họ và tên</label>
+                                    <input type="text" class="form-control" name="name" required>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                    <div class="form-group">
+                                        <label class="form-label form-label-required">Email</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label form-label-required">Số điện thoại</label>
+                                        <input type="tel" class="form-control" name="phone" placeholder="0912345678"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Address -->
+                        <div class="card mb-lg">
+                            <div class="card-header">Địa Chỉ Giao Hàng</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label form-label-required">Địa chỉ</label>
+                                    <input type="text" class="form-control" name="street"
+                                        placeholder="Số nhà, tên đường" required>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+                                    <div class="form-group">
+                                        <label class="form-label form-label-required">Phường/Xã</label>
+                                        <input type="text" class="form-control" name="ward" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label form-label-required">Quận/Huyện</label>
+                                        <input type="text" class="form-control" name="district" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label form-label-required">Tỉnh/TP</label>
+                                        <input type="text" class="form-control" name="city" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="card mb-lg">
+                            <div class="card-header">Phương Thức Thanh Toán</div>
+                            <div class="card-body">
+                                <label class="form-check">
+                                    <input type="radio" name="paymentMethod" value="cod" class="form-check-input"
+                                        checked>
+                                    <span class="form-check-label">
+                                        <strong>Thanh toán khi nhận hàng (COD)</strong><br>
+                                        <span class="text-sm" style="color: var(--text-secondary);">Thanh toán bằng tiền
+                                            mặt khi nhận hàng</span>
+                                    </span>
+                                </label>
+
+                                <label class="form-check">
+                                    <input type="radio" name="paymentMethod" value="bank_transfer"
+                                        class="form-check-input">
+                                    <span class="form-check-label">
+                                        <strong>Chuyển khoản ngân hàng</strong><br>
+                                        <span class="text-sm" style="color: var(--text-secondary);">Chuyển khoản trước,
+                                            giao hàng sau</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="card mb-lg">
+                            <div class="card-body">
+                                <div class="form-group mb-0">
+                                    <label class="form-label">Ghi chú đơn hàng (tùy chọn)</label>
+                                    <textarea class="form-control" name="notes" rows="3"
+                                        placeholder="Ghi chú về đơn hàng, ví dụ: giao hàng giờ hành chính..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div>
+                    <div class="cart-summary">
+                        <h2 class="cart-summary-title">Đơn Hàng</h2>
+
+                        <div id="orderItems" class="mb-lg"></div>
+
+                        <div class="cart-summary-row">
+                            <span>Tạm tính:</span>
+                            <span id="subtotalAmount"></span>
+                        </div>
+
+                        <div class="cart-summary-row">
+                            <span>Phí vận chuyển:</span>
+                            <span id="shippingAmount"></span>
+                        </div>
+
+                        <div class="cart-summary-row total">
+                            <span>Tổng cộng:</span>
+                            <span id="totalAmount"></span>
+                        </div>
+
+                        <button type="submit" form="checkoutForm" class="btn btn-primary w-full mt-lg"
+                            id="placeOrderBtn">
+                            Đặt hàng
+                        </button>
+
+                        <a href="cart.html" class="btn btn-text w-full mt-md">
+                            ← Quay lại giỏ hàng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About -->
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/data/database.js"></script>
+    <script src="./js/data/validators.js"></script>
+    <script src="./js/data/initial-data.js"></script>
+    <script src="./js/services/product-service.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/order-service.js"></script>
+    <script src="./js/services/wishlist-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script src="./js/pages/checkout.js"></script>
+</body>
+
+</html>

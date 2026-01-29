@@ -1,0 +1,423 @@
+{
+    "version": "1.1",
+    "products": [
+        {
+            "id": "prod-001",
+            "name": "Áo Khoác Mùa Đông Cho Chó",
+            "slug": "ao-khoac-mua-dong-cho-cho",
+            "description": "Áo khoác ấm áp, chống gió hiệu quả cho những ngày lạnh",
+            "longDescription": "Áo khoác cao cấp được thiết kế riêng cho chó size nhỏ đến trung bình. Làm từ 95% polyester tái chế, bề mặt chống nước nhẹ, lớp lót cotton mềm mại. Thiết kế có mũ trùm đầu, dễ mặc tháo với khóa kéo YKK bền chắc.",
+            "categoryId": "cat-dog",
+            "price": 450000,
+            "compareAtPrice": 600000,
+            "images": [
+                "./assets/images/products/dog-winter-jacket.png"
+            ],
+            "sizes": [
+                "S",
+                "M",
+                "L",
+                "XL"
+            ],
+            "material": "95% Polyester tái chế, 5% Cotton organic",
+            "recycledContent": 95,
+            "stock": 45,
+            "isActive": true,
+            "isFeatured": true,
+            "tags": [
+                "mùa đông",
+                "chống nước",
+                "có mũ"
+            ],
+            "createdAt": "2026-01-15T10:00:00Z",
+            "updatedAt": "2026-01-15T10:00:00Z"
+        },
+        {
+            "id": "prod-002",
+            "name": "Áo Thun Basic Cho Mèo",
+            "slug": "ao-thun-basic-cho-meo",
+            "description": "Áo thun mềm mại, thoáng mát phù hợp mọi mùa",
+            "longDescription": "Áo thun basic với thiết kế đơn giản, thanh lịch. Chất liệu cotton tái chế 100%, siêu mềm, thấm hút mồ hôi tốt. Phù hợp cho mèo nhà, dễ giặt, không ra màu.",
+            "categoryId": "cat-cat",
+            "price": 199000,
+            "compareAtPrice": 0,
+            "images": [
+                "./assets/images/products/cat-basic-tshirt.png"
+            ],
+            "sizes": [
+                "XS",
+                "S",
+                "M"
+            ],
+            "material": "100% Cotton tái chế",
+            "recycledContent": 100,
+            "stock": 60,
+            "isActive": true,
+            "isFeatured": true,
+            "tags": [
+                "basic",
+                "thoáng mát",
+                "dễ giặt"
+            ],
+            "createdAt": "2026-01-16T09:00:00Z",
+            "updatedAt": "2026-01-16T09:00:00Z"
+        },
+        {
+            "id": "prod-003",
+            "name": "Áo Mưa Cho Chó Size Lớn",
+            "slug": "ao-mua-cho-cho-size-lon",
+            "description": "Áo mưa chống thấm hoàn toàn, thiết kế che toàn thân",
+            "longDescription": "Áo mưa với lớp PU tái chế chống thấm nước 100%. Thiết kế che toàn thân kèm mũ trùm đầu. Phản quang giúp dễ nhìn thấy vào ban đêm. Có khe để gắn dây dắt.",
+            "categoryId": "cat-dog",
+            "price": 320000,
+            "compareAtPrice": 400000,
+            "images": [
+                "./assets/images/products/dog-raincoat.png"
+            ],
+            "sizes": [
+                "M",
+                "L",
+                "XL"
+            ],
+            "material": "PU tái chế chống thấm",
+            "recycledContent": 85,
+            "stock": 30,
+            "isActive": true,
+            "isFeatured": true,
+            "tags": [
+                "chống nước",
+                "phản quang",
+                "mùa mưa"
+            ],
+            "createdAt": "2026-01-17T11:00:00Z",
+            "updatedAt": "2026-01-17T11:00:00Z"
+        },
+        {
+            "id": "prod-004",
+            "name": "Áo Len Ấm Cho Mèo",
+            "slug": "ao-len-am-cho-meo",
+            "description": "Áo len dệt kim mềm mại, giữ ấm hiệu quả",
+            "longDescription": "Áo len dệt kim từ sợi acrylic tái chế. Thiết kế ôm nhẹ, không gò bó, giữ ấm tốt. Nhiều màu sắc pastel dịu nhẹ. Dễ phối đồ cho mèo cưng.",
+            "categoryId": "cat-cat",
+            "price": 280000,
+            "compareAtPrice": 0,
+            "images": [
+                "./assets/images/products/cat-sweater.png"
+            ],
+            "sizes": [
+                "XS",
+                "S",
+                "M"
+            ],
+            "material": "80% Acrylic tái chế, 20% Cotton",
+            "recycledContent": 80,
+            "stock": 40,
+            "isActive": true,
+            "isFeatured": true,
+            "tags": [
+                "mùa đông",
+                "len dệt kim",
+                "giữ ấm"
+            ],
+            "createdAt": "2026-01-18T10:30:00Z",
+            "updatedAt": "2026-01-18T10:30:00Z"
+        },
+        {
+            "id": "prod-005",
+            "name": "Áo Hoodie Thể Thao Cho Chó",
+            "slug": "ao-hoodie-the-thao-cho-cho",
+            "description": "Áo hoodie năng động, phong cách thể thao",
+            "longDescription": "Hoodie thể thao với chất liệu jersey tái chế mềm mại, co giãn tốt. Có mũ và túi kangaroo phía trước. Thiết kế sporty, năng động cho cún yêu.",
+            "categoryId": "cat-dog",
+            "price": 380000,
+            "compareAtPrice": 480000,
+            "images": [
+                "./assets/images/products/dog-hoodie.png"
+            ],
+            "sizes": [
+                "S",
+                "M",
+                "L"
+            ],
+            "material": "90% Polyester tái chế, 10% Spandex",
+            "recycledContent": 90,
+            "stock": 25,
+            "isActive": true,
+            "isFeatured": false,
+            "tags": [
+                "thể thao",
+                "có mũ",
+                "có túi"
+            ],
+            "createdAt": "2026-01-19T14:00:00Z",
+            "updatedAt": "2026-01-19T14:00:00Z"
+        },
+        {
+            "id": "prod-006",
+            "name": "Áo Polo Lịch Lãm Cho Chó",
+            "slug": "ao-polo-lich-lam-cho-cho",
+            "description": "Áo polo sang trọng, phù hợp dạo phố",
+            "longDescription": "Áo polo với cổ bẻ cổ điển, thiết kế lịch lãm. Vải pique tái chế thoáng khí, thấm hút mồ hôi. Có thêu logo GreenPet tinh tế. Phù hợp cho những buổi dạo phố hoặc sự kiện.",
+            "categoryId": "cat-dog",
+            "price": 350000,
+            "compareAtPrice": 0,
+            "images": [
+                "./assets/images/products/dog-polo.png"
+            ],
+            "sizes": [
+                "S",
+                "M",
+                "L",
+                "XL"
+            ],
+            "material": "100% Cotton pique tái chế",
+            "recycledContent": 100,
+            "stock": 35,
+            "isActive": true,
+            "isFeatured": false,
+            "tags": [
+                "polo",
+                "lịch lãm",
+                "dạo phố"
+            ],
+            "createdAt": "2026-01-20T09:00:00Z",
+            "updatedAt": "2026-01-20T09:00:00Z"
+        },
+        {
+            "id": "prod-007",
+            "name": "Váy Công Chúa Cho Mèo",
+            "slug": "vay-cong-chua-cho-meo",
+            "description": "Váy xinh xắn, phong cách công chúa",
+            "longDescription": "Váy công chúa với tầng váy xòe nhẹ, điểm ren tinh tế. Chất liệu vải tulle tái chế mềm mại. Thiết kế dễ mặc với khuy bấm sau lưng. Hoàn hảo cho những buổi chụp ảnh.",
+            "categoryId": "cat-cat",
+            "price": 320000,
+            "compareAtPrice": 420000,
+            "images": [
+                "./assets/images/products/cat-dress.png"
+            ],
+            "sizes": [
+                "XS",
+                "S"
+            ],
+            "material": "Vải tulle và ren tái chế",
+            "recycledContent": 85,
+            "stock": 20,
+            "isActive": true,
+            "isFeatured": false,
+            "tags": [
+                "váy",
+                "công chúa",
+                "dễ thương"
+            ],
+            "createdAt": "2026-01-21T11:00:00Z",
+            "updatedAt": "2026-01-21T11:00:00Z"
+        },
+        {
+            "id": "prod-008",
+            "name": "Áo Khoác Jeans Cho Chó",
+            "slug": "ao-khoac-jeans-cho-cho",
+            "description": "Áo khoác jeans cá tính, phong cách urban",
+            "longDescription": "Áo khoác denim tái chế với wash nhẹ vintage. Có túi hai bên và cúc kim loại bền chắc. Phong cách cá tính, năng động. Phù hợp cún size trung bình.",
+            "categoryId": "cat-dog",
+            "price": 420000,
+            "compareAtPrice": 550000,
+            "images": [
+                "./assets/images/products/dog-denim.png"
+            ],
+            "sizes": [
+                "M",
+                "L",
+                "XL"
+            ],
+            "material": "100% Denim tái chế",
+            "recycledContent": 100,
+            "stock": 18,
+            "isActive": true,
+            "isFeatured": false,
+            "tags": [
+                "jeans",
+                "cá tính",
+                "vintage"
+            ],
+            "createdAt": "2026-01-22T10:00:00Z",
+            "updatedAt": "2026-01-22T10:00:00Z"
+        },
+        {
+            "id": "prod-009",
+            "name": "Áo Tank Top Mát Mẻ Cho Mèo",
+            "slug": "ao-tank-top-mat-me-cho-meo",
+            "description": "Áo ba lỗ thoáng mát, phù hợp mùa hè",
+            "longDescription": "Tank top với thiết kế đơn giản, thoáng khí. Vải bamboo tái chế siêu mát, kháng khuẩn tự nhiên. Có nhiều màu sắc trẻ trung. Phù hợp mùa hè hoặc trong nhà máy lạnh.",
+            "categoryId": "cat-cat",
+            "price": 180000,
+            "compareAtPrice": 0,
+            "images": [
+                "./assets/images/products/cat-tank-top.png"
+            ],
+            "sizes": [
+                "XS",
+                "S",
+                "M"
+            ],
+            "material": "Vải bamboo tái chế",
+            "recycledContent": 90,
+            "stock": 50,
+            "isActive": true,
+            "isFeatured": false,
+            "tags": [
+                "mùa hè",
+                "thoáng mát",
+                "kháng khuẩn"
+            ],
+            "createdAt": "2026-01-23T09:30:00Z",
+            "updatedAt": "2026-01-23T09:30:00Z"
+        },
+        {
+            "id": "prod-010",
+            "name": "Áo Liền Quần Pyjama Cho Chó",
+            "slug": "ao-lien-quan-pyjama-cho-cho",
+            "description": "Bộ ngủ ấm áp, dễ thương",
+            "longDescription": "Áo liền quần pyjama với thiết kế bao toàn thân. Vải fleece tái chế mềm mại, giữ ấm cực tốt. Có khuy bấm ở bụng để dễ mặc tháo. Hoàn hảo cho giấc ngủ ngon.",
+            "categoryId": "cat-dog",
+            "price": 480000,
+            "compareAtPrice": 0,
+            "images": [
+                "./assets/images/products/dog-pyjama.png"
+            ],
+            "sizes": [
+                "S",
+                "M",
+                "L"
+            ],
+            "material": "100% Fleece tái chế",
+            "recycledContent": 100,
+            "stock": 22,
+            "isActive": true,
+            "isFeatured": true,
+            "tags": [
+                "bộ ngủ",
+                "ấm áp",
+                "dễ thương"
+            ],
+            "createdAt": "2026-01-24T15:00:00Z",
+            "updatedAt": "2026-01-24T15:00:00Z"
+        },
+        {
+            "id": "prod-011",
+            "name": "Áo Sơ Mi Lịch Sự Cho Mèo",
+            "slug": "ao-so-mi-lich-su-cho-meo",
+            "description": "Sơ mi thanh lịch, phù hợp sự kiện",
+            "longDescription": "Áo sơ mi với cổ đứng nhỏ xinh, có thắt nơ đi kèm. Vải linen tái chế mỏng nhẹ, thoáng khí. Thiết kế tối giản, sang trọng. Có thể tháo nơ để thay đổi phong cách.",
+            "categoryId": "cat-cat",
+            "price": 260000,
+            "compareAtPrice": 320000,
+            "images": [
+                "./assets/images/products/cat-formal-shirt.png"
+            ],
+            "sizes": [
+                "XS",
+                "S",
+                "M"
+            ],
+            "material": "Linen tái chế",
+            "recycledContent": 85,
+            "stock": 28,
+            "isActive": true,
+            "isFeatured": false,
+            "tags": [
+                "sơ mi",
+                "lịch sự",
+                "có nơ"
+            ],
+            "createdAt": "2026-01-25T10:00:00Z",
+            "updatedAt": "2026-01-25T10:00:00Z"
+        },
+        {
+            "id": "prod-012",
+            "name": "Áo Khoác Bomber Cho Chó",
+            "slug": "ao-khoac-bomber-cho-cho",
+            "description": "Áo bomber cá tính, phong cách phi công",
+            "longDescription": "Áo khoác bomber với thiết kế cổ điển. Vải nylon tái chế chống gió, lót bông mỏng giữ ấm. Có túi zip hai bên và khóa kéo YKK cao cấp. Phong cách cá tính, hiện đại.",
+            "categoryId": "cat-dog",
+            "price": 520000,
+            "compareAtPrice": 680000,
+            "images": [
+                "./assets/images/products/dog-bomber.png"
+            ],
+            "sizes": [
+                "M",
+                "L",
+                "XL"
+            ],
+            "material": "Nylon tái chế, lót bông",
+            "recycledContent": 88,
+            "stock": 15,
+            "isActive": true,
+            "isFeatured": true,
+            "tags": [
+                "bomber",
+                "cá tính",
+                "chống gió"
+            ],
+            "createdAt": "2026-01-26T12:00:00Z",
+            "updatedAt": "2026-01-26T12:00:00Z"
+        },
+        {
+            "id": "prod-013",
+            "name": "Bandana Hoa Tiết Hoa",
+            "slug": "bandana-hoa-tiet-hoa",
+            "description": "Khăn cổ style vintage với họa tiết hoa",
+            "longDescription": "Bandana cotton tái chế với họa tiết hoa vintage đáng yêu. Thiết kế tam giác có thể buộc nhiều kiểu. Phù hợp cả chó và mèo. Dễ giặt, không ra màu. Hoàn hảo cho phong cách dạo phố.",
+            "categoryId": "cat-dog",
+            "price": 149000,
+            "compareAtPrice": 0,
+            "images": [
+                "./assets/images/products/bandana.png"
+            ],
+            "sizes": [
+                "S",
+                "M"
+            ],
+            "material": "100% Cotton tái chế",
+            "recycledContent": 100,
+            "stock": 55,
+            "isActive": true,
+            "isFeatured": true,
+            "tags": [
+                "bandana",
+                "họa tiết",
+                "vintage"
+            ],
+            "createdAt": "2026-01-26T13:00:00Z",
+            "updatedAt": "2026-01-26T13:00:00Z"
+        },
+        {
+            "id": "prod-014",
+            "name": "Đồ Chơi Cần Mèo",
+            "slug": "do-choi-can-meo",
+            "description": "Cần câu mèo với vật liệu tái chế an toàn",
+            "longDescription": "Đồ chơi cần câu mèo với thân cần bằng tre tái chế, dây chun bền chắc, và các phụ kiện lông vũ tái chế. Kích thích bản năng săn mồi, giúp mèo vận động. An toàn, bền đẹp.",
+            "categoryId": "cat-cat",
+            "price": 199000,
+            "compareAtPrice": 250000,
+            "images": [
+                "./assets/images/products/cat-toy-wand.png"
+            ],
+            "sizes": [
+                "One Size"
+            ],
+            "material": "Tre tái chế, lông vũ tái chế",
+            "recycledContent": 95,
+            "stock": 40,
+            "isActive": true,
+            "isFeatured": true,
+            "tags": [
+                "đồ chơi",
+                "mèo",
+                "tái chế"
+            ],
+            "createdAt": "2026-01-26T14:00:00Z",
+            "updatedAt": "2026-01-26T14:00:00Z"
+        }
+    ]
+}

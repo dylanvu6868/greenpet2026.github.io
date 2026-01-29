@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+greenpet.db
+*.sqlite3
+
+# Secrets & Config
+secrets.json
+chatbot_context.txt  # Optional: Keep or exclude depending on if you want it public. Let's keep context public for demo.
+
+# Logs
+models.log
+*.log
+
+# Scripts
+test_api.py
+
+# System
+.DS_Store
+Thumbs.db

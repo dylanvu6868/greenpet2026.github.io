@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chương trình đổi cũ lấy mới - GreenPet">
+    <title>Đổi Cũ Lấy Mới - GreenPet</title>
+
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+    <style>
+        .step-card {
+            background: var(--color-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: var(--color-primary);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-banner-sm {
+            position: relative;
+            background-color: var(--color-background-alt);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .hero-banner-content {
+            padding: 3rem;
+            max-width: 600px;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="site-logo">
+                    <img src="./assets/images/logo.svg" alt="GreenPet" style="height: 60px; vertical-align: middle;">
+                </a>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    &#9776;
+                </button>
+
+                <nav class="site-nav" id="siteNav">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                    <a href="products.html" class="nav-link">Sản phẩm</a>
+                    <a href="about.html" class="nav-link">Về chúng tôi</a>
+                    <a href="contact.html" class="nav-link">Liên hệ</a>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="profile.html" class="auth-link" title="Tài khoản">
+                        <img src="./assets/images/icons/user.svg" alt="User" width="24" height="24">
+                    </a>
+                    <a href="wishlist.html" class="action-btn" title="Yêu thích">
+                        <img src="./assets/images/icons/heart.svg" alt="Wishlist" width="24" height="24">
+                    </a>
+                    <a href="cart.html" class="header-cart" id="headerCart">
+                        <img src="./assets/images/icons/cart.svg" alt="Cart" width="24" height="24">
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-2xl">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero-banner-sm flex items-center">
+                <div class="hero-banner-content">
+                    <span class="badge mb-md"
+                        style="background: #e6fcf5; color: var(--color-primary); font-size: 0.9rem;">Chương trình bền
+                        vững</span>
+                    <h1 class="text-3xl font-bold mb-md">Đổi Cũ Lấy Mới</h1>
+                    <p class="text-gray text-lg mb-lg">
+                        Đừng vứt bỏ quần áo cũ của thú cưng. Hãy cùng GreenPet tái sinh chúng và nhận ưu đãi hấp dẫn.
+                    </p>
+                    <a href="contact.html" class="btn btn-primary">Tìm cửa hàng gần nhất</a>
+                </div>
+                <!-- Image decoration (Desktop only) -->
+                <div class="mobile-hidden" style="flex: 1; height: 350px;">
+                    <img src="./assets/images/trade-in-program.jpg" alt="Trade-in"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+
+            <!-- Steps -->
+            <div class="mb-3xl">
+                <h2 class="text-2xl font-bold text-center mb-xl">Quy Trình 3 Bước Đơn Giản</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3 class="text-lg font-bold mb-sm">Chuẩn bị</h3>
+                        <p class="text-gray">
+                            Thu gom quần áo thú cưng đã qua sử dụng. Vui lòng giặt sạch trước khi mang đến.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3 class="text-lg font-bold mb-sm">Mang đến cửa hàng</h3>
+                        <p class="text-gray">
+                            Đến cửa hàng GreenPet gần nhất. Nhân viên của chúng tôi sẽ kiểm tra và phân loại.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3 class="text-lg font-bold mb-sm">Nhận ưu đãi</h3>
+                        <p class="text-gray">
+                            Nhận ngay voucher giảm giá <strong>10%</strong> cho đơn hàng tiếp theo của bạn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ text block -->
+            <div class="bg-background-alt rounded-lg p-xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+                    <div>
+                        <h2 class="text-xl font-bold mb-md">Tại sao nên tham gia?</h2>
+                        <ul class="text-gray space-y-md">
+                            <li class="flex items-start mb-sm">
+                                <span class="text-primary mr-sm">✓</span>
+                                Giảm thiểu rác thải ra môi trường
+                            </li>
+                            <li class="flex items-start mb-sm">
+                                <span class="text-primary mr-sm">✓</span>
+                                Tái chế thành nguyên liệu mới
+                            </li>
+                            <li class="flex items-start mb-sm">
+                                <span class="text-primary mr-sm">✓</span>
+                                Quyên góp cho trạm cứu hộ thú cưng
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold mb-md">Điều kiện áp dụng</h2>
+                        <p class="text-gray mb-sm">Chương trình áp dụng cho tất cả các loại quần áo thú cưng, không phân
+                            biệt thương hiệu.</p>
+                        <p class="text-gray">Voucher có giá trị sử dụng trong vòng 30 ngày kể từ ngày nhận.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GreenPet</h3>
+                    <p>Thương hiệu thời trang thú cưng bền vững, sản phẩm làm từ 80-100% vật liệu tái chế.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Facebook">
+                            <img src="./assets/images/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                        </a>
+                        <a href="https://instagram.com/greenpet" target="_blank" rel="noopener" class="social-link"
+                            title="Instagram">
+                            <img src="./assets/images/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                        </a>
+                        <a href="mailto:greenpet@gmail.com" class="social-link" title="Email">
+                            <img src="./assets/images/icons/email.svg" alt="Email" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên Kết</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Trang chủ</a>
+                        <a href="products.html">Sản phẩm</a>
+                        <a href="about.html">Về chúng tôi</a>
+                        <a href="contact.html">Liên hệ</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <div class="footer-links">
+                        <a href="policies.html#cart">Hướng dẫn mua hàng</a>
+                        <a href="policies.html#payment">Hướng dẫn thanh toán</a>
+                        <a href="policies.html#return">Chính sách đổi trả</a>
+                        <a href="policies.html#privacy">Chính sách bảo mật</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 0.5rem;">Địa chỉ: Đại học FPT Hà Nội, Hòa Lạc, Hà Nội</p>
+                        <p style="margin-bottom: 0.5rem;">Email: greenpet@gmail.com</p>
+                        <p style="margin-bottom: 0.5rem;">Số điện thoại: 0976774094</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 GreenPet. Thiết kế bền vững vì một hành tinh xanh. 🌿
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/data/storage.js"></script>
+    <script src="./js/services/cart-service.js"></script>
+    <script src="./js/services/wishlist-service.js"></script>
+    <script src="./js/ui/dom-helpers.js"></script>
+    <script src="./js/ui/ui-components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            UIComponents.updateAuthLink();
+            UIComponents.updateHeaderCartCount(CartService.getItemCount());
+
+            const toggle = document.getElementById('mobileMenuToggle');
+            const nav = document.getElementById('siteNav');
+            if (toggle && nav) {
+                toggle.addEventListener('click', () => nav.classList.toggle('active'));
+            }
+        });
+    </script>
+</body>
+
+</html>
