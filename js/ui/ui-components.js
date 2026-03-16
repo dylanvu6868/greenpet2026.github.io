@@ -132,42 +132,12 @@ const UIComponents = {
         DOM.append(priceContainer, price);
         DOM.append(priceRow, priceContainer);
 
-        // Stock indicator (New UI)
-        const stockContainer = DOM.create('div', {
-            className: 'product-card-stock',
-            style: 'margin-top: 0;'
-        });
-
-        // Progress bar container
-        const progressBg = DOM.create('div', {
-            className: 'stock-progress-bg',
-            title: `Còn ${stock} sản phẩm`
-        });
-
-        // Progress fill
-        const progressFill = DOM.create('div', {
-            className: 'stock-progress-fill',
-            style: `width: ${stockPercent}%; background-color: ${stock < 10 ? '#ff6b6b' : 'var(--color-primary)'};`
-        });
-
-        DOM.append(progressBg, progressFill);
-
-        // Text labels
-        const stockLabels = DOM.create('div', {
-            className: 'stock-labels',
-        });
-
-        const stockText = DOM.create('span', {
-            className: 'stock-text'
-        }, stock < 10 ? `Sắp hết hàng (${stock})` : `Còn ${stock} sản phẩm`);
-
-        DOM.append(stockLabels, stockText);
-        DOM.append(stockContainer, [progressBg, stockLabels]);
+        // Stock indicator removed as per request
 
         // Special label (if needed)
         // const specialLabel = DOM.create('div', { ... });
 
-        DOM.append(body, [titleLink, description, priceRow, stockContainer]);
+        DOM.append(body, [titleLink, description, priceRow]);
         DOM.append(card, [imageLink, body]);
 
         return card;
