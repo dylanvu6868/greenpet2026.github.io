@@ -65,6 +65,20 @@
         const form = DOM.byId('checkoutForm');
         if (!form) return;
 
+        // Payment method change logic
+        const paymentRadios = DOM.qsa('input[name="paymentMethod"]');
+        const bankQR = DOM.byId('bankTransferQR');
+
+        paymentRadios.forEach(radio => {
+            DOM.on(radio, 'change', (e) => {
+                if (e.target.value === 'bank_transfer') {
+                    if (bankQR) DOM.show(bankQR);
+                } else {
+                    if (bankQR) DOM.hide(bankQR);
+                }
+            });
+        });
+
         DOM.on(form, 'submit', async (e) => {
             e.preventDefault();
             await handlePlaceOrder();
