@@ -86,7 +86,7 @@ const CONFIG = {
     // Shipping
     SHIPPING: {
         DEFAULT_FEE: 30000,
-        FREE_SHIPPING_THRESHOLD: 500000
+        FREE_SHIPPING_THRESHOLD: 150000
     },
 
     // Inventory
